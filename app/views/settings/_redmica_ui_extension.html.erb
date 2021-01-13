@@ -1,0 +1,4 @@
+<p>
+  <%= label_tag('settings[searchable_selectbox][enabled]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable')) %>
+  <%= check_box_tag('settings[searchable_selectbox][enabled]', 1, settings['searchable_selectbox'].to_h['enabled']) %>
+</p>
