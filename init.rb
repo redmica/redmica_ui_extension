@@ -12,5 +12,5 @@ Redmine::Plugin.register :redmica_ui_extension do
   url 'https://github.com/redmica/redmica_ui_extension'
   author_url 'https://github.com/redmica'
 
-  settings default: {'searchable_selectbox' => {'enabled' => 1}, 'burndown_chart' => {'enabled' => 1}}, partial: 'settings/redmica_ui_extension'
+  settings default: {'searchable_selectbox' => {'enabled' => 1}, 'burndown_chart' => {'enabled' => 1}, 'disable_enter_key' => {'enabled' => 1}}, partial: 'settings/redmica_ui_extension'
 end

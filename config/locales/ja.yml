@@ -9,3 +9,6 @@ ja:
       label_ideal_line: 理想線
       label_total_substract_closed_line: 合計 - 完了
       label_open_line: 未完了
+    disable_enter_key:
+      label_enable: 題名入力欄でのEnterキー/Returnキーによる保存を無効にする
+      text_description_of_alternatives: 代わりにControl + Enter, Command + Returnのショートカットを利用することができます。

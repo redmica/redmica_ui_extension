@@ -4,8 +4,11 @@ This plugin adds useful UI improvements that are difficult to implement in Redmi
 
 ## Features
 
-* 1. Makes the Redmine select box searchable
-* 2. Add Burndown chart on version detail
+* 1. Makes the Redmine select box searchable.
+* 2. Add Burndown chart on version detail.
+* 3. Prevent submit by accidentally pressing `Enter key` in the subject field of the issue form. Instead, you can quickly save the subject with `Control + Enter`, `Command + Return`.
+
+WIP: More detailed feature introduction.
 
 ## Installation
 

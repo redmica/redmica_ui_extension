@@ -13,3 +13,6 @@ require_dependency 'burndown_chart/versions_helper_patch'
 Rails.configuration.to_prepare do
   VersionsHelper.include BurndownChart::VersionsHelperPatch
 end
+
+# disable_enter_key
+require_dependency 'disable_enter_key/hook_listener'

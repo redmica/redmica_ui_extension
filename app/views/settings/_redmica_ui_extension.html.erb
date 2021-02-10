@@ -1,8 +1,19 @@
-<p>
-  <%= label_tag('settings[searchable_selectbox][enabled]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable')) %>
-  <%= check_box_tag('settings[searchable_selectbox][enabled]', 1, settings['searchable_selectbox'].to_h['enabled']) %>
-</p>
-<p>
-  <%= label_tag('settings[burndown_chart][enabled]', I18n.t('redmica_ui_extension.burndown_chart.label_enable')) %>
-  <%= check_box_tag('settings[burndown_chart][enabled]', 1, settings['burndown_chart'].to_h['enabled']) %>
-</p>
+<div class='searchable-selectbox-box'>
+  <p>
+    <%= label_tag('settings[searchable_selectbox][enabled]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable')) %>
+    <%= check_box_tag('settings[searchable_selectbox][enabled]', 1, settings['searchable_selectbox'].to_h['enabled']) %>
+  </p>
+</div>
+<div class='burndown-chart-box'>
+  <p>
+    <%= label_tag('settings[burndown_chart][enabled]', I18n.t('redmica_ui_extension.burndown_chart.label_enable')) %>
+    <%= check_box_tag('settings[burndown_chart][enabled]', 1, settings['burndown_chart'].to_h['enabled']) %>
+  </p>
+</div>
+<div class='disable-enter-key-box'>
+  <p>
+    <%= label_tag('settings[disable_enter_key][enabled]', I18n.t('redmica_ui_extension.disable_enter_key.label_enable')) %>
+    <%= check_box_tag('settings[disable_enter_key][enabled]', 1, settings['disable_enter_key'].to_h['enabled']) %>
+    <em class='info'><%= I18n.t('redmica_ui_extension.disable_enter_key.text_description_of_alternatives') %></em>
+  </p>
+</div>

@@ -9,3 +9,6 @@ en:
       label_ideal_line: Ideal
       label_total_substract_closed_line: Total - Closed
       label_open_line: Open
+    disable_enter_key:
+      label_enable: Disable saving by Enter/Return key in the subject input field
+      text_description_of_alternatives: You can use the Control + Enter, Command + Return shortcuts instead.
