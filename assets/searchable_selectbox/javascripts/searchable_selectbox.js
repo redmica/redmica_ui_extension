@@ -54,8 +54,14 @@ function replaceSelect2() {
   if ($('body').hasClass('controller-workflows')) {
     return;
   } else {
-    var selectInTabular = $('.tabular select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
-    if (selectInTabular.length) { selectInTabular.select2({ width: '85%' }).on('select2:select', function(){Rails.fire($(this)[0], 'change')}); }
+    var selectInTabular = $('.tabular .splitcontent select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
+    if (selectInTabular.length) {
+      selectInTabular.select2({
+        width: 'style'
+      }).on('select2:select', function () {
+        Rails.fire($(this)[0], 'change')
+      });
+    }
 
     var other = $('select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
     if (other.length) { other.select2().on('select2:select', function(){Rails.fire($(this)[0], 'change')}); }
