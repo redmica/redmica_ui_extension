@@ -44,3 +44,16 @@ fieldset#filters td.values .select2-container--default {
   width: 75%;
   max-width: 300px;
 }
+
+.select2-results__options::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+.select2-results__options::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #00000080;
+  box-shadow: 0 0 1px #ffffff80;
+}
+.select2-results__options li {
+  padding: 4px 6px;
+}
