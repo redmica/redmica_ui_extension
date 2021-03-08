@@ -1,0 +1,15 @@
+<% if version && chart_data = issues_burndown_chart_data(version) %>
+  <div id="version-detail-chart"><canvas id="burndown-chart"></canvas></div>'
+  <%= stylesheet_link_tag('../burndown_chart/stylesheets/burndown_chart.css', plugin: 'redmica_ui_extension') %>
+  <%= javascript_include_tag('Chart.bundle.min') %>
+  <%= javascript_include_tag('../burndown_chart/javascripts/burndown_chart.js', plugin: 'redmica_ui_extension') %>
+  <%= javascript_tag do %>
+      $(function() {
+        var title = '<%= I18n.t('redmica_ui_extension.burndown_chart.label_issues_burndown') %>';
+        var y_label = '<%= I18n.t('redmica_ui_extension.burndown_chart.label_issues_burndown_y_label') %>';
+        var y_lim = <%= version.fixed_issues.count %>;
+        var chartData = <%= chart_data.to_json.html_safe %>;
+        renderChart('#burndown-chart', title, y_label, y_lim, chartData);
+      });
+  <% end %>
+<% end %>
