@@ -12,7 +12,7 @@ module BurndownChart
       def issues_burndown_chart_data(version)
         return nil if version.visible_fixed_issues.empty?
         chart_start_date = (version.start_date || version.created_on).to_date
-        chart_end_date = version.due_date || (version.completed? ? version.visible_fixed_issues.maximum(:closed_on) : User.current.today)
+        chart_end_date = (version.due_date || (version.completed? ? version.visible_fixed_issues.maximum(:closed_on) : User.current.today)).to_date
         line_end_date = [User.current.today, chart_end_date].min
         step_size = ((chart_start_date..chart_end_date).count.to_f / 90).ceil
         issues = version.visible_fixed_issues

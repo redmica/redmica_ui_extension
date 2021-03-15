@@ -72,6 +72,33 @@ class VersionsHelperPatchTest < Redmine::HelperTest
                  datasets.last[:data]
   end
 
+  def test_issues_burndown_chart_data_should_return_chart_data_end_with_latest_issue_closed_on
+    # 3 days ago (create version and issue)
+    travel -3.day
+    version = Version.create!(:project => Project.find(1), :name => 'test', :due_date => nil)
+    issue = Issue.create!(:project => version.project, :fixed_version => version,
+                          :priority => IssuePriority.find_by_name('Normal'), :tracker => version.project.trackers.first,
+                          :subject => "test issue", :author => User.current)
+    travel_back
+
+    # today (close issue and close version)
+    issue.status = IssueStatus.where(:is_closed => true).first
+    issue.save
+    version.status = 'closed'
+    version.save
+
+    # generate chart data
+    chart_data = issues_burndown_chart_data(version)
+    labels = chart_data[:labels]
+    datasets = chart_data[:datasets]
+
+    # assert labels for xaxis (end with latest issue closed_on)
+    assert_equal [3.days.before.to_date.to_s,
+                  2.days.before.to_date.to_s,
+                  1.days.before.to_date.to_s,
+                  issue.closed_on.to_date.to_s], labels
+  end
+
   def test_issues_burndown_chart_data_should_return_chart_data_without_ideal
     version = Version.find(2)
     version.update(:due_date => nil)
