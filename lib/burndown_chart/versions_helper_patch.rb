@@ -19,8 +19,9 @@ module BurndownChart
         return nil if step_size < 1
 
         ideal = [{ :t => chart_start_date.to_s, :y => issues.count }, { :t => version.due_date.to_s, :y => 0 }]
-        total_closed = chart_start_date.step(line_end_date, step_size).collect{ |d| { :t => d.to_s, :y => issues.where("#{Issue.table_name}.closed_on IS NULL OR #{Issue.table_name}.closed_on>=?", d.end_of_day).count } }
-        open = chart_start_date.step(line_end_date, step_size).collect{ |d| { :t => d.to_s, :y => issues.where("#{Issue.table_name}.created_on<=?", d.end_of_day).count - issues.open(false).where("#{Issue.table_name}.closed_on<=?", d.end_of_day).count } }
+        plot_dates = (chart_start_date.step(line_end_date, step_size).to_a + [line_end_date]).uniq
+        total_closed = plot_dates.collect{ |d| { :t => d.to_s, :y => issues.count - issues.open(false).where("#{Issue.table_name}.closed_on<=?", d.end_of_day).count } }
+        open = plot_dates.collect{ |d| { :t => d.to_s, :y => issues.where("#{Issue.table_name}.created_on<=?", d.end_of_day).count - issues.open(false).where("#{Issue.table_name}.closed_on<=?", d.end_of_day).count } }
 
         labels = chart_start_date.step(chart_end_date, step_size).collect{ |d| d.to_s }
         datasets = []
