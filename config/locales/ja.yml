@@ -3,6 +3,7 @@ ja:
     searchable_selectbox:
       label_enable: セレクトボックスを検索可能にする
     burndown_chart:
+      label_enable: バーンダウンチャートを表示する
       label_issues_burndown: バーンダウンチャート
       label_issues_burndown_y_label: チケット数
       label_ideal_line: 理想線
