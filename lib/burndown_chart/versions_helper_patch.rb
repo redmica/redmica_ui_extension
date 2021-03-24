@@ -11,6 +11,7 @@ module BurndownChart
     module InstanceMethods
       def issues_burndown_chart_data(version)
         return nil if version.visible_fixed_issues.empty?
+
         chart_start_date = (version.start_date || version.created_on).to_date
         chart_end_date = (version.due_date || (version.completed? ? version.visible_fixed_issues.maximum(:closed_on) : User.current.today)).to_date
         line_end_date = [User.current.today, chart_end_date].min
@@ -21,7 +22,9 @@ module BurndownChart
         ideal = [{ :t => chart_start_date.to_s, :y => issues.count }, { :t => version.due_date.to_s, :y => 0 }]
         plot_dates = (chart_start_date.step(line_end_date, step_size).to_a + [line_end_date]).uniq
         total_closed = plot_dates.collect{ |d| { :t => d.to_s, :y => issues.count - issues.open(false).where("#{Issue.table_name}.closed_on<=?", d.end_of_day).count } }
-        open = plot_dates.collect{ |d| { :t => d.to_s, :y => issues.where("#{Issue.table_name}.created_on<=?", d.end_of_day).count - issues.open(false).where("#{Issue.table_name}.closed_on<=?", d.end_of_day).count } }
+        open = plot_dates.collect do |d|
+          { :t => d.to_s, :y => issues.where("#{Issue.table_name}.created_on<=?", d.end_of_day).count - issues.open(false).where("#{Issue.table_name}.closed_on<=?", d.end_of_day).count }
+        end
 
         labels = chart_start_date.step(chart_end_date, step_size).collect{ |d| d.to_s }
         datasets = []

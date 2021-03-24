@@ -7,7 +7,6 @@ class BurndownChartTest < ApplicationSystemTestCase
            :users, :members, :roles, :member_roles,
            :trackers, :projects_trackers, :enumerations, :issue_statuses, :issues
 
-
   def test_render_chart_on_version_detail
     log_user('jsmith', 'jsmith')
     visit '/versions/2'

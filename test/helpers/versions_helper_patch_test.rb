@@ -10,7 +10,7 @@ class VersionsHelperPatchTest < Redmine::HelperTest
 
   def test_issues_burndown_chart_data_should_return_chart_data
     # 3 days ago
-    travel -3.day
+    travel_to 3.days.before
     version = Version.create!(:project => Project.find(1), :name => 'test', :due_date => 4.days.after.to_date)
     2.times.each do |i|
       Issue.create!(:project => version.project, :fixed_version => version,
@@ -20,14 +20,14 @@ class VersionsHelperPatchTest < Redmine::HelperTest
     travel_back
 
     # 2 days ago
-    travel -2.day
+    travel_to 2.days.before
     issue = version.fixed_issues.last
     issue.status = IssueStatus.where(:is_closed => true).first
     issue.save
     travel_back
 
     # yesterday
-    travel -1.day
+    travel_to 1.day.before
     issue = Issue.create!(:project => version.project, :fixed_version => version,
                           :priority => IssuePriority.find_by_name('Normal'), :tracker => version.project.trackers.first,
                           :subject => "test issue 2", :author => User.current)
@@ -45,9 +45,9 @@ class VersionsHelperPatchTest < Redmine::HelperTest
     # assert labels for xaxis
     assert_equal [3.days.before.to_date.to_s,
                   2.days.before.to_date.to_s,
-                  1.days.before.to_date.to_s,
+                  1.day.before.to_date.to_s,
                   User.current.today.to_s,
-                  1.days.after.to_date.to_s], labels
+                  1.day.after.to_date.to_s], labels
 
     # assert label in datasets
     assert_equal I18n.t('redmica_ui_extension.burndown_chart.label_ideal_line'), datasets.first[:label]
@@ -56,25 +56,25 @@ class VersionsHelperPatchTest < Redmine::HelperTest
 
     # assert data for 'ideal' line
     assert_equal [{:t => 3.days.before.to_date.to_s, :y => 3},
-                  {:t => 1.days.after.to_date.to_s, :y => 0}],
+                  {:t => 1.day.after.to_date.to_s, :y => 0}],
                  datasets.first[:data]
     # assert data for 'total - closed' line
     assert_equal [{:t => 3.days.before.to_date.to_s, :y => 3},
                   {:t => 2.days.before.to_date.to_s, :y => 2},
-                  {:t => 1.days.before.to_date.to_s, :y => 2},
+                  {:t => 1.day.before.to_date.to_s, :y => 2},
                   {:t => User.current.today.to_s, :y => 1}],
                  datasets.second[:data]
     # assert data for 'open' line
     assert_equal [{:t => 3.days.before.to_date.to_s, :y => 2},
                   {:t => 2.days.before.to_date.to_s, :y => 1},
-                  {:t => 1.days.before.to_date.to_s, :y => 2},
+                  {:t => 1.day.before.to_date.to_s, :y => 2},
                   {:t => User.current.today.to_s, :y => 1}],
                  datasets.last[:data]
   end
 
   def test_issues_burndown_chart_data_should_return_chart_data_end_with_latest_issue_closed_on
     # 3 days ago (create version and issue)
-    travel -3.day
+    travel_to 3.days.before
     version = Version.create!(:project => Project.find(1), :name => 'test', :due_date => nil)
     issue = Issue.create!(:project => version.project, :fixed_version => version,
                           :priority => IssuePriority.find_by_name('Normal'), :tracker => version.project.trackers.first,
@@ -95,7 +95,7 @@ class VersionsHelperPatchTest < Redmine::HelperTest
     # assert labels for xaxis (end with latest issue closed_on)
     assert_equal [3.days.before.to_date.to_s,
                   2.days.before.to_date.to_s,
-                  1.days.before.to_date.to_s,
+                  1.day.before.to_date.to_s,
                   issue.closed_on.to_date.to_s], labels
   end
 
@@ -111,7 +111,7 @@ class VersionsHelperPatchTest < Redmine::HelperTest
     # assert labels for xaxis
     assert_equal [3.days.before.to_date.to_s,
                   2.days.before.to_date.to_s,
-                  1.days.before.to_date.to_s,
+                  1.day.before.to_date.to_s,
                   User.current.today.to_s], labels
 
     # assert label in datasets
