@@ -32,17 +32,22 @@
 
 /* Adjust size */
 fieldset#filters td.values .select2-container--default {
-  max-width: 230px; min-width: 140px;
+  max-width: 230px;
+  min-width: 140px;
 }
 .tabular .select2-container {
   min-width: 150px;
 }
 .select2-container {
-  min-width: 50px;
+  min-width: 100px;
 }
 .tabular .splitcontent .select2-container {
   width: 75%;
   max-width: 300px;
+}
+#add_filter_select + .select2-container,
+#group_by + .select2-container {
+  min-width: 200px;
 }
 
 .select2-results__options::-webkit-scrollbar {
