@@ -13,7 +13,19 @@ module BurndownChart
         return nil if version.visible_fixed_issues.empty?
 
         chart_start_date = (version.start_date || version.created_on).to_date
-        chart_end_date = (version.due_date || (version.completed? ? version.visible_fixed_issues.maximum(:closed_on) : User.current.today)).to_date
+        if version.open_issues_count == 0
+          chart_end_date = [version.due_date,
+                            version.visible_fixed_issues.open(false).maximum(:closed_on).to_date].compact.max
+        elsif version.open_issues_count > 0
+          if version.visible_fixed_issues.open(false).empty?
+            chart_end_date = [(version.due_date || User.current.today),
+                              version.visible_fixed_issues.maximum(:created_on).to_date].max
+          else
+            chart_end_date = [(version.due_date|| User.current.today),
+                              version.visible_fixed_issues.maximum(:created_on).to_date,
+                              version.visible_fixed_issues.open(false).maximum(:closed_on).to_date].max
+          end
+        end
         line_end_date = [User.current.today, chart_end_date].min
         step_size = ((chart_start_date..chart_end_date).count.to_f / 90).ceil
         issues = version.visible_fixed_issues

@@ -99,6 +99,24 @@ class VersionsHelperPatchTest < Redmine::HelperTest
                   issue.closed_on.to_date.to_s], labels
   end
 
+  def test_issues_burndown_chart_data_should_return_chart_data_end_with_today
+    # 5 days ago (create version and issue)
+    travel_to 5.days.before
+    version = Version.create!(:project => Project.find(1), :name => 'test', :due_date => nil)
+    issue = Issue.create!(:project => version.project, :fixed_version => version,
+                          :priority => IssuePriority.find_by_name('Normal'), :tracker => version.project.trackers.first,
+                          :subject => "test issue", :author => User.current)
+    travel_back
+
+    # generate chart data
+    chart_data = issues_burndown_chart_data(version)
+    labels = chart_data[:labels]
+    datasets = chart_data[:datasets]
+
+    assert_equal 5.days.before.to_date.to_s, labels.first
+    assert_equal User.current.today.to_s, labels.last
+  end
+
   def test_issues_burndown_chart_data_should_return_chart_data_without_ideal
     version = Version.find(2)
     version.update(:due_date => nil)
