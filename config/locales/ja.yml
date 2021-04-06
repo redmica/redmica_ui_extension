@@ -2,3 +2,10 @@ ja:
   redmica_ui_extension:
     searchable_selectbox:
       label_enable: セレクトボックスを検索可能にする
+    burndown_chart:
+      label_enable: バーンダウンチャートを表示する
+      label_issues_burndown: バーンダウンチャート
+      label_issues_burndown_y_label: チケット数
+      label_ideal_line: 理想線
+      label_total_substract_closed_line: 合計 - 完了
+      label_open_line: 未完了

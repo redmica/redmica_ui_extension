@@ -2,3 +2,10 @@ en:
   redmica_ui_extension:
     searchable_selectbox:
       label_enable: Make the selection box searchable
+    burndown_chart:
+      label_enable: Display Burndown Chart
+      label_issues_burndown: burndown
+      label_issues_burndown_y_label: Number of Issues
+      label_ideal_line: Ideal
+      label_total_substract_closed_line: Total - Closed
+      label_open_line: Open

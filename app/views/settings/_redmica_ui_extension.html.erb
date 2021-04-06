@@ -2,3 +2,7 @@
   <%= label_tag('settings[searchable_selectbox][enabled]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable')) %>
   <%= check_box_tag('settings[searchable_selectbox][enabled]', 1, settings['searchable_selectbox'].to_h['enabled']) %>
 </p>
+<p>
+  <%= label_tag('settings[burndown_chart][enabled]', I18n.t('redmica_ui_extension.burndown_chart.label_enable')) %>
+  <%= check_box_tag('settings[burndown_chart][enabled]', 1, settings['burndown_chart'].to_h['enabled']) %>
+</p>
