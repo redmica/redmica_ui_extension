@@ -40,7 +40,7 @@ module BurndownChart
 
         labels = chart_start_date.step(chart_end_date, step_size).collect{ |d| d.to_s }
         datasets = []
-        if version.due_date
+        if version.due_date && version.due_date > chart_start_date
           datasets << {:label => I18n.t('redmica_ui_extension.burndown_chart.label_ideal_line'), :data => ideal,
                        :backgroundColor => "rgba(0, 0, 0, 0)",
                        :lineTension => 0, :borderWidth => 2, :borderDash => [5, 2], :spanGaps => true}
