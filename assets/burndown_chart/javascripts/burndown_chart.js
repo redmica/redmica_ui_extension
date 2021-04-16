@@ -24,7 +24,7 @@ function renderChart(canvas_id, title, y_label, y_lim, chartData){
         yAxes: [{
           scaleLabel: { display: true, labelString: y_label },
           gridLines: { borderDash: [6, 4] },
-          ticks: { min: 0, max: y_lim, stepSize: 1 }
+          ticks: { min: 0, max: y_lim, autoSkip: true }
         }]
       }
     }
