@@ -133,6 +133,25 @@ class VersionsHelperPatchTest < Redmine::HelperTest
                   User.current.today.to_s], labels
 
     # assert label in datasets
+    assert_equal 2, datasets.size
+    assert_equal I18n.t('redmica_ui_extension.burndown_chart.label_total_substract_closed_line'), datasets.first[:label]
+    assert_equal I18n.t('redmica_ui_extension.burndown_chart.label_open_line'), datasets.last[:label]
+  end
+
+  def test_issues_burndown_chart_data_should_return_chart_data_without_ideal_when_due_date_earlier_than_start_date
+    version = Version.find(2)
+    version.update(:due_date => 2.days.before.to_date)
+    version.stubs(:start_date).returns(1.days.before.to_date)
+
+    issue = version.fixed_issues.last
+    issue.status = IssueStatus.where(:is_closed => true).first
+    issue.save
+
+    chart_data = issues_burndown_chart_data(version)
+    datasets = chart_data[:datasets]
+
+    # assert label in datasets
+    assert_equal 2, datasets.size
     assert_equal I18n.t('redmica_ui_extension.burndown_chart.label_total_substract_closed_line'), datasets.first[:label]
     assert_equal I18n.t('redmica_ui_extension.burndown_chart.label_open_line'), datasets.last[:label]
   end
