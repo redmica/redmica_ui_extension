@@ -8,7 +8,7 @@ class SearchableSelectboxTest < ApplicationSystemTestCase
            :enumerations, :custom_fields, :custom_values, :custom_fields_trackers,
            :watchers, :journals, :journal_details
 
-  def test_select2_does_not_apply_if_searchable_selectbox_enabled_is_nil
+  def test_select2_does_not_apply_if_searchable_selectbox_enabled_setting_value_is_zero
     with_settings :plugin_redmica_ui_extension => {'searchable_selectbox' => {'enabled' => 0}} do
       log_user('jsmith', 'jsmith')
       visit '/my/page'
