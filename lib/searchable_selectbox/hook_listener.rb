@@ -3,7 +3,7 @@
 module SearchableSelectbox
   class HookListener < Redmine::Hook::ViewListener
     def view_layouts_base_html_head(context)
-      return '' unless Setting.plugin_redmica_ui_extension['searchable_selectbox'].to_h['enabled']
+      return '' unless Setting.enabled_redmica_ui_extension_feature?('searchable_selectbox')
 
       stylesheet_link_tag('../searchable_selectbox/stylesheets/select2.min', plugin: 'redmica_ui_extension') +
       stylesheet_link_tag('../searchable_selectbox/stylesheets/searchable_selectbox', plugin: 'redmica_ui_extension') +
