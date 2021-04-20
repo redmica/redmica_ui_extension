@@ -1,4 +1,10 @@
 function renderChart(canvas_id, title, y_label, y_lim, chartData){
+  y_axes_ticks = { min: 0, max: y_lim };
+  if (y_lim > 35) {
+    y_axes_ticks['autoSkip'] = true;
+  } else {
+    y_axes_ticks['stepSize'] = 1;
+  }
   new Chart($(canvas_id), {
     type: 'line',
     data: chartData,
@@ -24,7 +30,7 @@ function renderChart(canvas_id, title, y_label, y_lim, chartData){
         yAxes: [{
           scaleLabel: { display: true, labelString: y_label },
           gridLines: { borderDash: [6, 4] },
-          ticks: { min: 0, max: y_lim, stepSize: 1, autoSkip: true }
+          ticks: y_axes_ticks
         }]
       }
     }
