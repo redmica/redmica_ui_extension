@@ -1,4 +1,4 @@
-<% if Setting.plugin_redmica_ui_extension['burndown_chart'].to_h['enabled'] && version && chart_data = issues_burndown_chart_data(version) %>
+<% if Setting.enabled_redmica_ui_extension_feature?('burndown_chart') && version && chart_data = issues_burndown_chart_data(version) %>
   <div id="version-detail-chart"><canvas id="burndown-chart"></canvas></div>
   <%= stylesheet_link_tag('../burndown_chart/stylesheets/burndown_chart.css', plugin: 'redmica_ui_extension') %>
   <%= javascript_include_tag('Chart.bundle.min') %>

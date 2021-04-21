@@ -32,8 +32,8 @@ class BurndownChartTest < ApplicationSystemTestCase
     end
   end
 
-  def test_does_not_render_chart_if_setting_enabled_is_nil
-    with_settings :plugin_redmica_ui_extension => {'burndown_chart' => {'enabled' => nil}} do
+  def test_does_not_render_chart_if_enabled_setting_value_is_zero
+    with_settings :plugin_redmica_ui_extension => {'burndown_chart' => {'enabled' => 0}} do
       log_user('jsmith', 'jsmith')
       visit '/versions/2'
 
