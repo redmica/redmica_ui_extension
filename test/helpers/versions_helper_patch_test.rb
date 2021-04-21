@@ -34,6 +34,7 @@ class VersionsHelperPatchTest < Redmine::HelperTest
     travel_back
 
     # today
+    issue.reload
     issue.status = IssueStatus.where(:is_closed => true).first
     issue.save
 
@@ -82,6 +83,7 @@ class VersionsHelperPatchTest < Redmine::HelperTest
     travel_back
 
     # today (close issue and close version)
+    issue.reload
     issue.status = IssueStatus.where(:is_closed => true).first
     issue.save
     version.status = 'closed'
