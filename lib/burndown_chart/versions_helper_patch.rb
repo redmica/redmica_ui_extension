@@ -40,17 +40,17 @@ module BurndownChart
 
         labels = chart_start_date.step(chart_end_date, step_size).collect{ |d| d.to_s }
         datasets = []
+        datasets << {:label => I18n.t('redmica_ui_extension.burndown_chart.label_open_line'), :data => open,
+                     :borderColor => "rgba(90, 195, 154, 1)", :backgroundColor => "rgba(90, 195, 54, 0.1)", :pointBackgroundColor => "rgba(90, 195, 54, 1)",
+                     :lineTension => 0, :borderWidth => 2, pointRadius: 2}
+        datasets << {:label => I18n.t('redmica_ui_extension.burndown_chart.label_total_substract_closed_line'), :data => total_closed,
+                     :borderColor => "rgba(186, 224, 186, 1)", :backgroundColor => "rgba(0, 0, 0, 0)", :pointBackgroundColor => "rgba(186, 224, 186, 1)",
+                     :lineTension => 0, :borderWidth => 2, :borderDash => [5, 2], pointRadius: 2}
         if version.due_date && version.due_date > chart_start_date
           datasets << {:label => I18n.t('redmica_ui_extension.burndown_chart.label_ideal_line'), :data => ideal,
                        :backgroundColor => "rgba(0, 0, 0, 0)",
                        :lineTension => 0, :borderWidth => 2, :borderDash => [5, 2], :spanGaps => true}
         end
-        datasets << {:label => I18n.t('redmica_ui_extension.burndown_chart.label_total_substract_closed_line'), :data => total_closed,
-                     :borderColor => "rgba(186, 224, 186, 1)", :backgroundColor => "rgba(0, 0, 0, 0)", :pointBackgroundColor => "rgba(186, 224, 186, 1)",
-                     :lineTension => 0, :borderWidth => 2, :borderDash => [5, 2]}
-        datasets << {:label => I18n.t('redmica_ui_extension.burndown_chart.label_open_line'), :data => open,
-                     :borderColor => "rgba(186, 224, 186, 1)", :backgroundColor => "rgba(186, 224, 186, 0.1)", :pointBackgroundColor => "rgba(186, 224, 186, 1)",
-                     :lineTension => 0, :borderWidth => 2}
 
         return {:labels => labels, :datasets => datasets}
       end
