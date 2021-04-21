@@ -10,6 +10,7 @@ function renderChart(canvas_id, title, y_label, y_lim, chartData){
     data: chartData,
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       legend: {
         position: 'right',
         labels: { boxWidth: 20, fontSize: 10, padding: 10 }
