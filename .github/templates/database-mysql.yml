@@ -1,0 +1,11 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  host: db
+  port: 3306
+  username: root
+  password: password
+
+test:
+  <<: *default
+  database: redmine_test
