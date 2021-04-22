@@ -4,7 +4,7 @@ require File.expand_path('../../../../../test/test_helper', __FILE__)
 
 class VersionsHelperPatchTest < Redmine::HelperTest
   include VersionsHelper
-  fixtures :projects, :enabled_modules, :versions,
+  fixtures :projects, :enabled_modules, :versions, :issues,
            :users, :members, :roles, :member_roles,
            :trackers, :projects_trackers, :enumerations, :issue_statuses
 
