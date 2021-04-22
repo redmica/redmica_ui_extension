@@ -1,5 +1,5 @@
-body.controller-versions.action-show #version-detail-chart { width: 70%; margin: 2em 0 }
+body.controller-versions.action-show #version-detail-chart { width: 70%; min-height: 500px; margin: 2em 0 }
 @media screen and (max-width: 899px)
 {
-  body.controller-versions.action-show #version-detail-chart {width:100%;}
+  body.controller-versions.action-show #version-detail-chart { width:100%; min-height: 500px }
 }
