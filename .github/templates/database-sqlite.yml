@@ -1,0 +1,9 @@
+default: &default
+  adapter: sqlite3
+  encoding: utf8
+  host: localhost
+  username: redmine
+
+test:
+  <<: *default
+  database: redmine_test
