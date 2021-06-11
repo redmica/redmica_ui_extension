@@ -7,7 +7,8 @@ This plugin adds useful UI improvements that are difficult to implement in Redmi
 ### 1. Make the selection box searchable
 
 Change the Redmine selection box to searchable.  
-Replace Redmine selectbox with [Select2 4.0.12](https://select2.org/).
+Replace Redmine selectbox with [Select2 4.0.12](https://select2.org/).  
+This feature is based on the redmine_searchable_selectbox plugin(https://github.com/farend/redmine_searchable_selectbox).
 
 Demo:  
 | Issues filter | New issue |
