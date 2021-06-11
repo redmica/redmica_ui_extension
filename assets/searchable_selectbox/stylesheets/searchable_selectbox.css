@@ -52,7 +52,7 @@ fieldset#filters td.values .select2-container--default {
 
 .select2-results__options::-webkit-scrollbar {
   -webkit-appearance: none;
-  width: 7px;
+  width: 12px;
 }
 .select2-results__options::-webkit-scrollbar-thumb {
   border-radius: 4px;
@@ -60,5 +60,29 @@ fieldset#filters td.values .select2-container--default {
   box-shadow: 0 0 1px #ffffff80;
 }
 .select2-results__options li {
-  padding: 4px 6px;
+  padding: 3px 6px;
+}
+
+/* Increase the height of the select box */
+.select2-container--default .select2-results>.select2-results__options{
+  max-height: 450px;
+}
+
+/* Change the style referring to the default theme of Redmine */
+.select2-search--dropdown input.select2-search__field {
+  background: #fff url(../../../images/magnifier.png) no-repeat 2px 50%;
+  padding-left: 20px;
+}
+.select2-search--dropdown input.select2-search__field:focus {
+  border: 1px solid #5ad;
+  outline: none;
+}
+li.select2-results__option--highlighted[role="option"][aria-selected] {
+  background-color: #759FC2;
+  color: #fff;
+}
+.select2-dropdown {
+  padding-bottom: 5px;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .5);
+  border: none;
 }
