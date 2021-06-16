@@ -4,8 +4,24 @@ This plugin adds useful UI improvements that are difficult to implement in Redmi
 
 ## Features
 
-* 1. Makes the Redmine select box searchable
-* 2. Add Burndown chart on version detail
+### 1. Make the selection box searchable
+
+Change the Redmine selection box to searchable.  
+Replace Redmine selectbox with [Select2 4.0.12](https://select2.org/).  
+This feature is based on the redmine_searchable_selectbox plugin(https://github.com/farend/redmine_searchable_selectbox).
+
+Demo:  
+| Issues filter | New issue |
+| ------------- | --------- |
+| <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_filters.gif" /></kbd> | <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_new_issue.gif" /></kbd> |
+
+### 2. Display Burndown Chart on version detail
+
+### 3. You can disable each feature on the plugin settings page
+
+Administration > Plugins > RedMica UI extension configure
+
+<kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/plugin-settings.png" /></kbd>
 
 ## Installation
 
