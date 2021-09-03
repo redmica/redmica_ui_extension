@@ -58,18 +58,12 @@ function replaceSelect2() {
     if (selectInTabular.length) {
       selectInTabular.select2({
         width: 'style'
-      }).on('select2:select', function() {
-        // Rails.fire cannot be used in Redmine 3.x or earlier, so it will not be executed.
-        if (typeof Rails != 'undefined') { Rails.fire($(this)[0], 'change') }
       });
     }
 
     var other = $('select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
     if (other.length) {
-      other.select2().on('select2:select', function() {
-        // Rails.fire cannot be used in Redmine 3.x or earlier, so it will not be executed.
-        if (typeof Rails != 'undefined') { Rails.fire($(this)[0], 'change') }
-      });
+      other.select2();
     }
 
     var excludedSelect = $('table.list td>select');
