@@ -8,3 +8,22 @@
   <%= hidden_field_tag 'settings[burndown_chart][enabled]', 0 %>
   <%= check_box_tag('settings[burndown_chart][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('burndown_chart')) %>
 </p>
+<p>
+  <%# The feature to turn off mermaid macros is difficult to implement and will not be addressed. %>
+  <%# Show a disabled: true checkbox to indicate the existence of the feature %>
+  <%= label_tag('settings[mermaid_macro][enabled]', I18n.t('redmica_ui_extension.mermaid_macro.label_enable')) %>
+  <%= check_box_tag('settings[mermaid_macro][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('mermaid_macro'), { disabled: true }) %>
+
+  <div class='wiki'>
+    <%= l(:label_example) %>:
+<pre>
+{{mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+}}
+</pre>
+    <%= link_to "Mermaid's Syntax", 'https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference' %>
+  </div>
+</p>

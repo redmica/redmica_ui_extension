@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'redmine'
 require_relative 'init_redmica_ui_extension'
 
 Redmine::Plugin.register :redmica_ui_extension do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module RedmicaUiExtension
   module SettingPatch
     def self.included(base)
