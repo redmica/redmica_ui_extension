@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-require 'redmine'
-require_relative 'init_redmica_ui_extension'
+require File.expand_path('../init_redmica_ui_extension', __FILE__)
 
 Redmine::Plugin.register :redmica_ui_extension do
   requires_redmine version_or_higher: '4.1'
