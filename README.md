@@ -37,7 +37,7 @@ erDiagram
 }}
 ```
 
-Warning: Mermaid macro does not support Internet Explorer.
+**Warning: Mermaid macro does not support Internet Explorer.**
 
 <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_mermaid_macro.png" /></kbd>
 

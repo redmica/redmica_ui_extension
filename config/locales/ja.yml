@@ -11,4 +11,3 @@ ja:
       label_open_line: 未完了
     mermaid_macro:
       label_enable: Wikiでmermaid記法を使うためのmermaidマクロを追加
-      error_mermaid_macro_not_available_in_ie: Internet Explorerには対応していません

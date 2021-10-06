@@ -34,10 +34,8 @@ Redmine::WikiFormatting::Macros.register do
 
   macro :mermaid do |_obj, _args, text|
     tmp_id = "mermaid-#{SecureRandom.hex(10)}"
-    error_message = t(:error_can_not_execute_macro_html, name: 'mermaid', error: I18n.t('redmica_ui_extension.mermaid_macro.error_mermaid_macro_not_available_in_ie'))
 
     content_tag(:div, text, class: 'mermaid', id: tmp_id) +
-      content_tag(:div, error_message, class: 'flash error mermaid-error-message') +
       javascript_tag("initMermaidMacro('#{tmp_id}');")
   end
 end
