@@ -11,4 +11,3 @@ en:
       label_open_line: Open
     mermaid_macro:
       label_enable: Add a mermaid macro to use the mermaid syntax in the wiki
-      error_mermaid_macro_not_available_in_ie: Internet Explorer is not supported

@@ -17,7 +17,6 @@ class MermaidMacroTest < ApplicationSystemTestCase
     assert_selector 'div#journal-1-notes' do
       assert_selector '.mermaid svg'
       assert_selector '.mermaid.before_init_mermaid', count: 0
-      assert_selector '.mermaid-error-message', count: 0
     end
   end
 
@@ -34,7 +33,6 @@ class MermaidMacroTest < ApplicationSystemTestCase
     assert_selector 'div.wiki.wiki-preview' do
       assert_selector '.mermaid svg'
       assert_selector '.mermaid.before_init_mermaid', count: 0
-      assert_selector '.mermaid-error-message', count: 0
     end
   end
 
@@ -52,7 +50,6 @@ class MermaidMacroTest < ApplicationSystemTestCase
     assert_selector 'div#journal-1-notes' do
       assert_selector '.mermaid svg'
       assert_selector '.mermaid.before_init_mermaid', count: 0
-      assert_selector '.mermaid-error-message', count: 0
     end
   end
 end
