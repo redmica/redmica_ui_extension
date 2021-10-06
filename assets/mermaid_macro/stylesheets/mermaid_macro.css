@@ -1,0 +1,7 @@
+.before-init-mermaid {
+  opacity: 0;
+}
+
+.mermaid-error-message {
+  display: none;
+}

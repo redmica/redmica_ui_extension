@@ -23,6 +23,24 @@ Administration > Plugins > RedMica UI extension configure
 
 <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/plugin-settings.png" /></kbd>
 
+### 4. Add a mermaid macro to use the mermaid syntax in the wiki
+
+Add a mermaid macro to convert text written in [Mermaid syntax](https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference) into a diagram.  
+You can use the mermaid macro by writing the following in issues, wiki pages, etc.
+
+```
+{{mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE-ITEM : contains
+    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+}}
+```
+
+Warning: Mermaid macro does not support Internet Explorer.
+
+<kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_mermaid_macro.png" /></kbd>
+
 ## Installation
 
 Place the plugin source at Redmine plugins directory.
@@ -43,6 +61,8 @@ $ RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
 
 - Select2 4.0.13
   - LICENSE: https://github.com/select2/select2/blob/master/LICENSE.md
+- mermaid.js 8.12.1
+  - LICENSE: https://github.com/mermaid-js/mermaid/blob/master/LICENSE
 
 ## LICENSE
 

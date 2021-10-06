@@ -9,3 +9,6 @@ ja:
       label_ideal_line: 理想線
       label_total_substract_closed_line: 合計 - 完了
       label_open_line: 未完了
+    mermaid_macro:
+      label_enable: Wikiでmermaid記法を使うためのmermaidマクロを追加
+      error_mermaid_macro_not_available_in_ie: Internet Explorerには対応していません
