@@ -39,6 +39,11 @@ Chrome Driver required to run system tests. You can also use [selenium/standalon
 $ RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
 ```
 
+## Libraries included
+
+- Select2 4.0.13
+  - LICENSE: https://github.com/select2/select2/blob/master/LICENSE.md
+
 ## LICENSE
 
 GNU General Public License v2.0 (GPLv2)
