@@ -7,10 +7,12 @@ function initAllMermaidMacro() {
   if (isMermaidjsIsAvailable() === false) { return false; }
 
   // Hide the target before the change by before-init-mermaid class until mermaid.initialize() or mermaid.init() is executed.
-  // After executing mermaid.initialize() or mermaid.init(), remove the before-init-mermaid class to show it (ViewMermaidMacroContent).
+  // After executing mermaid.initialize() or mermaid.init(), remove the before-init-mermaid class to show it.
   mermaid.initialize({
     startOnLoad: true,
-    mermaid: { callback:function() { ViewMermaidMacroContent(); } }
+    mermaid: { callback:function() {
+      $('svg').parents('.mermaid.before-init-mermaid').removeClass('before-init-mermaid');
+    } }
   });
 }
 
@@ -27,12 +29,8 @@ function initMermaidMacro(id) {
 
 function isMermaidjsIsAvailable() {
   if (typeof mermaid === 'undefined') {
-    ViewMermaidMacroContent();
+    $('.mermaid').removeClass('before-init-mermaid');
     return false;
   }
   return true;
-}
-
-function ViewMermaidMacroContent() {
-  $('.mermaid').removeClass('before-init-mermaid');
 }
