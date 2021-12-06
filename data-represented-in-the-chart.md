@@ -17,22 +17,22 @@ Set from the following conditions:
 ### 2. End date of the chart
 Set from the following conditions:
 
-* If all issues in a version have been completed
+* If all issues in a version have been closed
   * Set from the most recent date below
     * due date of the version
-     * completion date of the issue in the version
+     * closed date of the issue in the version
 
-* If not all issues in a version have been completed
-  * If none of the issues in a version have been completed
+* If not all issues in a version have been closed
+  * If none of the issues in a version have been closed
     * Set from the most recent date below
     * due date of the version, if not, today's date   
     * creation date of the issue in the version
 
-  * If more than one issue has been completed
+  * If more than one issue has been closed
     * Set from the most recent date below
     * due date of the version, if not, today's date
     * creation date of the issue in the version
-    * completion date of the issue in the version
+    * closed date of the issue in the version
 
 ### 3 The end date of burndown line
 
@@ -43,8 +43,8 @@ Set from the most earliest date below:
 ## line to be drawn on the chart
 
 1. Ideal line
-2. Number of all issues - Number of issues that have been completed
-3. Number of issues that have not been completed
+2. Number of all issues - Number of issues that have been closed
+3. Number of issues that have not been closed
 
 ### 1. ideal line
 
@@ -56,14 +56,14 @@ Drawn under the following conditions:
 * If a due date is not set for the version 
   * No line is drawn
 
-### 2. Total number of issues - Number of issues that have been completed
+### 2. Total number of issues - Number of issues that have been closed
 
 The following numbers are drawn for each day from the start date of the chart to the end date of the line
 
-`Total number of issues in the version - Number of issues that have been completed as of that date`
+`Total number of issues in the version - Number of issues that have been closed as of that date`
 
-### 3. Number of issues that have not been completed
+### 3. Number of issues that have not been closed
 
 The following number of issues are drawn for each day between the start date of the chart and the end date of the line
 
-`Number of issues that have not been completed as of that date`
+`Number of issues that have not been closed as of that date`
