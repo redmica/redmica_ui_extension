@@ -17,6 +17,12 @@ Demo:
 
 ### 2. Display Burndown Chart on version detail
 
+Display a burndown chart on the version detail page based on the information in the version issues.
+
+<kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo-burndown-chart.png" /></kbd>
+
+[Explanation of Burndown Chart - Data represented in the chart (./data-represented-in-the-chart.md)](/data-represented-in-the-chart.md)
+
 ### 3. You can disable each feature on the plugin settings page
 
 Administration > Plugins > RedMica UI extension configure
