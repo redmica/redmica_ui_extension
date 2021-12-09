@@ -1,5 +1,7 @@
 # Data represented in the chart
 
+<kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo-burndown-chart.png" /></kbd>
+
 The appearance of the chart is determined by the following data  
 1. Start date of the chart
 2. End date of the chart
