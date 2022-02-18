@@ -17,7 +17,7 @@ EventTarget.prototype._addEventListener = EventTarget.prototype.addEventListener
 EventTarget.prototype.addEventListener = function(type, listener, options) {
    this._addEventListener(type, listener, options);
    // !String(listener).includes('triggered!'): Exclude events triggered by jQuery's trigger function
-   if (type=='change' && this.tagName == 'SELECT' && !String(listener).includes('triggered!')) {
+   if (type.toLowercase === 'change' && this.tagName.toLowercase === 'select' && !String(listener).includes('triggered!')) {
      $(this).attr('data-use-add-change-event-listener', true)
    }
 };
