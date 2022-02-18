@@ -12,6 +12,16 @@ $(document).on('ajax:success', function() {
   initAssignToMeLink();
 });
 
+// Override addEventListener to get that there is a native event.
+EventTarget.prototype._addEventListener = EventTarget.prototype.addEventListener;
+EventTarget.prototype.addEventListener = function(type, listener, options) {
+   this._addEventListener(type, listener, options);
+   // !String(listener).includes('triggered!'): Exclude events triggered by jQuery's trigger function
+   if (type.toLowerCase() === 'change' && this.tagName && this.tagName.toLowerCase() === 'select' && !String(listener).includes('triggered!')) {
+     $(this).attr('data-use-add-change-event-listener', true)
+   }
+};
+
 $(function() {
   // Replace with select2 when loading page.
   replaceSelect2();
@@ -59,16 +69,14 @@ function replaceSelect2() {
       selectInTabular.select2({
         width: 'style'
       }).on('select2:select', function() {
-        // Rails.fire cannot be used in Redmine 3.x or earlier, so it will not be executed.
-        if (typeof Rails != 'undefined') { Rails.fire($(this)[0], 'change') }
+        retriggerChangeIfNativeEventExists($(this));
       });
     }
 
     var other = $('select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
     if (other.length) {
       other.select2().on('select2:select', function() {
-        // Rails.fire cannot be used in Redmine 3.x or earlier, so it will not be executed.
-        if (typeof Rails != 'undefined') { Rails.fire($(this)[0], 'change') }
+        retriggerChangeIfNativeEventExists($(this));
       });
     }
 
@@ -88,4 +96,13 @@ function initAssignToMeLink() {
     $('#issue_assigned_to_id').val(element.data('id')).change();
     element.hide();
   });
+}
+
+// Bug handling: https://github.com/select2/select2/issues/1908
+// Retrigger the change event only when there is a native event.
+function retriggerChangeIfNativeEventExists(element) {
+  // Rails.fire cannot be used in Redmine 3.x or earlier, so it will not be executed.
+  if (element.data('use-add-change-event-listener') && typeof Rails != 'undefined') {
+    Rails.fire(element[0], 'change')
+  }
 }
