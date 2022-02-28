@@ -4,9 +4,7 @@ require File.expand_path('../../../../../test/test_helper', __FILE__)
 
 class ApplicationHelperPatchTest < Redmine::HelperTest
   include ApplicationHelper
-  fixtures :projects, :enabled_modules, :versions, :issues,
-           :users, :members, :roles, :member_roles,
-           :trackers, :projects_trackers, :enumerations, :issue_statuses
+  fixtures :attachments
 
   def setup
     @attachment = Attachment.find(3)
