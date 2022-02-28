@@ -33,3 +33,7 @@ Redmine::WikiFormatting::Macros.register do
       javascript_tag("initMermaidMacro('#{tmp_id}');")
   end
 end
+
+# preview_attachment
+require File.dirname(__FILE__) + '/lib/preview_attachment/hook_listener'
+ApplicationHelper.include PreviewAttachment::ApplicationHelperPatch

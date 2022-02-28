@@ -11,3 +11,5 @@ ja:
       label_open_line: 未完了
     mermaid_macro:
       label_enable: Wikiでmermaid記法を使うためのmermaidマクロを追加
+    preview_attachment:
+      label_enable: 添付ファイルをプレビュー可能にする
