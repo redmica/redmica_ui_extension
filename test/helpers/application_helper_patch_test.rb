@@ -53,7 +53,7 @@ class ApplicationHelperPatchTest < Redmine::HelperTest
                                  :data => { :bp => 'logo.gif',
                                             :bp_src => 'imgSrc',
                                             :url => 'http://test.host/attachments/download/3/logo.gif' },
-                                 :onclick => 'previewAttachment(this)').html_safe
+                                 :onclick => 'previewAttachment(this)')
       assert_equal(
         preview_link + original_link,
         link_to_attachment(@attachment, {:download => true, :class => 'icon-download'}))
