@@ -47,6 +47,14 @@ erDiagram
 
 <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_mermaid_macro.png" /></kbd>
 
+### 5. Preview Attachment
+
+Preview attachments without screen transitions.  
+The following attachments can be previewed.  
+Image, Audio, Video, PDF
+
+<kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_preview_attachment.gif" /></kbd>
+
 ## Installation
 
 Place the plugin source at Redmine plugins directory.
