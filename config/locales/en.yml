@@ -11,3 +11,5 @@ en:
       label_open_line: Open
     mermaid_macro:
       label_enable: Add a mermaid macro to use the mermaid syntax in the wiki
+    preview_attachment:
+      label_enable: Make attachments previewable

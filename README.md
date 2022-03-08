@@ -69,6 +69,8 @@ $ RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
   - LICENSE: https://github.com/select2/select2/blob/master/LICENSE.md
 - mermaid.js 8.12.1
   - LICENSE: https://github.com/mermaid-js/mermaid/blob/master/LICENSE
+- BigPicture.js 2.6.1
+  - LICENSE: https://github.com/henrygd/bigpicture/blob/master/LICENSE
 
 ## LICENSE
 
