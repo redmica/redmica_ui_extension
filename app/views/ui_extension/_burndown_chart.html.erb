@@ -1,8 +1,18 @@
 <% if Setting.enabled_redmica_ui_extension_feature?('burndown_chart') && version && chart_data = issues_burndown_chart_data(version) %>
   <div id="version-detail-chart"><canvas id="burndown-chart"></canvas></div>
   <%= stylesheet_link_tag('../burndown_chart/stylesheets/burndown_chart.css', plugin: 'redmica_ui_extension') %>
-  <%= javascript_include_tag('Chart.bundle.min') %>
-  <%= javascript_include_tag('../burndown_chart/javascripts/burndown_chart.js', plugin: 'redmica_ui_extension') %>
+  <% if File.exist?("#{Rails.root}/public/javascripts/chart.min.js") # latest version 3.7.1 %>
+    <%= javascript_include_tag('chart.min') %>
+    <%= javascript_include_tag('../burndown_chart/javascripts/chartjs-adapter-date-fns.bundle.min.js', plugin: 'redmica_ui_extension') %>
+    <%= javascript_include_tag('../burndown_chart/javascripts/burndown_chart.js', plugin: 'redmica_ui_extension') %>
+  <% elsif File.exist?("#{Rails.root}/public/javascripts/Chart.bundle.min.js") # old version 2.8.0 %>
+    <%= javascript_include_tag('Chart.bundle.min') %>
+    <%= javascript_include_tag('../burndown_chart/javascripts/burndown_chart.2.8.0.js', plugin: 'redmica_ui_extension') %>
+  <% else %>
+    <%= javascript_include_tag('../burndown_chart/javascripts/chart.min.js', plugin: 'redmica_ui_extension') %>
+    <%= javascript_include_tag('../burndown_chart/javascripts/chartjs-adapter-date-fns.bundle.min.js', plugin: 'redmica_ui_extension') %>
+    <%= javascript_include_tag('../burndown_chart/javascripts/burndown_chart.js', plugin: 'redmica_ui_extension') %>
+  <% end %>
   <%= javascript_tag do %>
       $(function() {
         var title = '<%= I18n.t('redmica_ui_extension.burndown_chart.label_issues_burndown') %>';
