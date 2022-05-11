@@ -12,6 +12,12 @@ $(document).on('ajax:success', function() {
   initAssignToMeLink();
 });
 
+// Fix a problem with focus not working in Redmine 5.0 or later.
+// issue: https://github.com/select2/select2/issues/5993
+$(document).on('select2:open', function() {
+  document.querySelector('.select2-search__field').focus();
+});
+
 // Override addEventListener to get that there is a native event.
 EventTarget.prototype._addEventListener = EventTarget.prototype.addEventListener;
 EventTarget.prototype.addEventListener = function(type, listener, options) {
