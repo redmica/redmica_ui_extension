@@ -5,13 +5,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_branch: [master, released-latest]
+        redmica_version: ["v2.0.0", "master"]
     runs-on: ubuntu-latest
     container:
-      image: redmica/redmica:latest
+      image: ruby:2.7
     services:
       chrome:
-        image: selenium/standalone-chrome-debug:3.141.59-20210913
+        image: selenium/standalone-chrome:latest
+        options: --shm-size=256m
+        ports:
+          - 4444:4444
       db:
         image: postgres:11
         env:
@@ -19,70 +22,67 @@ jobs:
           POSTGRES_INITDB_ARGS: --locale=C.UTF-8
           POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
-    defaults:
-      run:
-        working-directory: /usr/src/redmine
     steps:
       - uses: actions/checkout@v2
       - name: Setup
         run: |
           chmod +x /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh
-          /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh ${{matrix.redmica_branch}} postgres /usr/src/redmine
+          /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh ${{matrix.redmica_version}} postgres /usr/src/redmine
       - name: Test RedMica UI Extension plugin
-        run: RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
+        run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Test RedMica
-        run: RAILS_ENV=test bundle exec rake test
+        run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test
 
   test-mysql:
     strategy:
       fail-fast: false
       matrix:
-        redmica_branch: [master, released-latest]
+        redmica_version: [master, v2.1.0]
     runs-on: ubuntu-latest
     container:
-      image: redmica/redmica:latest
+      image: ruby:2.7
     services:
       chrome:
-        image: selenium/standalone-chrome-debug:3.141.59-20210913
+        image: seleniarm/standalone-chromium:latest
+        options: --shm-size=256m
+        ports:
+          - 4444:4444
       db:
         image: mysql:5
         env:
           MYSQL_ROOT_PASSWORD: password
-    defaults:
-      run:
-        working-directory: /usr/src/redmine
     steps:
       - uses: actions/checkout@v2
       - name: Setup
         run: |
           chmod +x /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh
-          /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh ${{matrix.redmica_branch}} mysql /usr/src/redmine
+          /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh ${{matrix.redmica_version}} mysql /usr/src/redmine
       - name: Test RedMica UI Extension plugin
-        run: RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
+        run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Test RedMica
-        run: RAILS_ENV=test bundle exec rake test
+        run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test
 
   test-sqlite:
     strategy:
       fail-fast: false
       matrix:
-        redmica_branch: [master, released-latest]
+        redmica_version: [master, v2.1.0]
     runs-on: ubuntu-latest
     container:
-      image: redmica/redmica:latest
+      image: ruby:2.7
     services:
       chrome:
-        image: selenium/standalone-chrome-debug:3.141.59-20210913
-    defaults:
-      run:
-        working-directory: /usr/src/redmine
+        image: seleniarm/standalone-chromium:latest
+        options: --shm-size=256m
+        ports:
+          - 4444:4444
     steps:
       - uses: actions/checkout@v2
       - name: Setup
         run: |
           chmod +x /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh
-          /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh ${{matrix.redmica_branch}} sqlite /usr/src/redmine
+          /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh ${{matrix.redmica_version}} sqlite /usr/src/redmine
       - name: Test RedMica UI Extension plugin
-        run: RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
+        run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Test RedMica
-        run: RAILS_ENV=test bundle exec rake test
+        run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test
