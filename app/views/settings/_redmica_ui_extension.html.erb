@@ -1,34 +1,54 @@
-<p>
-  <%= label_tag('settings[searchable_selectbox][enabled]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable')) %>
-  <%= hidden_field_tag 'settings[searchable_selectbox][enabled]', 0 %>
-  <%= check_box_tag('settings[searchable_selectbox][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('searchable_selectbox')) %>
-</p>
-<p>
-  <%= label_tag('settings[burndown_chart][enabled]', I18n.t('redmica_ui_extension.burndown_chart.label_enable')) %>
-  <%= hidden_field_tag 'settings[burndown_chart][enabled]', 0 %>
-  <%= check_box_tag('settings[burndown_chart][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('burndown_chart')) %>
-</p>
-<p>
-  <%= label_tag('settings[preview_attachment][enabled]', I18n.t('redmica_ui_extension.preview_attachment.label_enable')) %>
-  <%= hidden_field_tag 'settings[preview_attachment][enabled]', 0 %>
-  <%= check_box_tag('settings[preview_attachment][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('preview_attachment')) %>
-</p>
-<p>
-  <%# The feature to turn off mermaid macros is difficult to implement and will not be addressed. %>
-  <%# Show a disabled: true checkbox to indicate the existence of the feature %>
-  <%= label_tag('settings[mermaid_macro][enabled]', I18n.t('redmica_ui_extension.mermaid_macro.label_enable')) %>
-  <%= check_box_tag('settings[mermaid_macro][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('mermaid_macro'), { disabled: true }) %>
+<fieldset>
+  <legend><%= I18n.t('redmica_ui_extension.searchable_selectbox.name') %></legend>
+  <p>
+    <%= label_tag('settings[searchable_selectbox][enabled]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable')) %>
+    <%= hidden_field_tag 'settings[searchable_selectbox][enabled]', 0 %>
+    <%= check_box_tag('settings[searchable_selectbox][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('searchable_selectbox'), data: {enables: '.enabled_multiple_selectbox'}) %>
+  </p>
+  <p>
+    <%= label_tag('settings[searchable_selectbox][enabled_multiple_selectbox]', I18n.t('redmica_ui_extension.searchable_selectbox.label_enable_multiple_selectbox')) %>
+    <%= hidden_field_tag 'settings[searchable_selectbox][enabled_multiple_selectbox]', 0, class: 'enabled_multiple_selectbox' %>
+    <%= check_box_tag('settings[searchable_selectbox][enabled_multiple_selectbox]', 1, Setting.plugin_redmica_ui_extension['searchable_selectbox'].to_h['enabled_multiple_selectbox'] == '1', class: 'enabled_multiple_selectbox') %>
+  </p>
+</fieldset>
 
-  <div class='wiki'>
-    <%= l(:label_example) %>:
-<pre>
-{{mermaid
-erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-}}
-</pre>
-    <%= link_to "Mermaid's Syntax", 'https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference' %>
-  </div>
-</p>
+<fieldset>
+  <legend><%= I18n.t('redmica_ui_extension.burndown_chart.name') %></legend>
+  <p>
+    <%= label_tag('settings[burndown_chart][enabled]', I18n.t('redmica_ui_extension.burndown_chart.label_enable')) %>
+    <%= hidden_field_tag 'settings[burndown_chart][enabled]', 0 %>
+    <%= check_box_tag('settings[burndown_chart][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('burndown_chart')) %>
+  </p>
+</fieldset>
+
+<fieldset>
+  <legend><%= I18n.t('redmica_ui_extension.preview_attachment.name') %></legend>
+  <p>
+    <%= label_tag('settings[preview_attachment][enabled]', I18n.t('redmica_ui_extension.preview_attachment.label_enable')) %>
+    <%= hidden_field_tag 'settings[preview_attachment][enabled]', 0 %>
+    <%= check_box_tag('settings[preview_attachment][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('preview_attachment')) %>
+  </p>
+</fieldset>
+
+<fieldset>
+  <legend><%= I18n.t('redmica_ui_extension.mermaid_macro.name') %></legend>
+  <p>
+    <%# The feature to turn off mermaid macros is difficult to implement and will not be addressed. %>
+    <%# Show a disabled: true checkbox to indicate the existence of the feature %>
+    <%= label_tag('settings[mermaid_macro][enabled]', I18n.t('redmica_ui_extension.mermaid_macro.label_enable')) %>
+    <%= check_box_tag('settings[mermaid_macro][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('mermaid_macro'), { disabled: true }) %>
+
+    <div class='wiki'>
+      <%= l(:label_example) %>:
+  <pre>
+  {{mermaid
+  erDiagram
+      CUSTOMER ||--o{ ORDER : places
+      ORDER ||--|{ LINE-ITEM : contains
+      CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+  }}
+  </pre>
+      <%= link_to "Mermaid's Syntax", 'https://mermaid-js.github.io/mermaid/#/./n00b-syntaxReference' %>
+    </div>
+  </p>
+</fieldset>
