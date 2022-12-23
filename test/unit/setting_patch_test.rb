@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../../../../../test/test_helper', __FILE__)
+require_relative '../../../../test/test_helper'
 
 class SettingPatchTest < Redmine::HelperTest
   fixtures :users
