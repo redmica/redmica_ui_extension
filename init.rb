@@ -13,5 +13,6 @@ Redmine::Plugin.register :redmica_ui_extension do
 
   settings default: {'searchable_selectbox' => {'enabled' => 1},
                      'burndown_chart' => {'enabled' => 1},
+                     'timelog_chart' => {'enabled' => 1},
                      'preview_attachment' => {'enabled' => 1}}, partial: 'settings/redmica_ui_extension'
 end

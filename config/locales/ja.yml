@@ -9,6 +9,13 @@ ja:
       label_ideal_line: 理想線
       label_total_substract_closed_line: 合計 - 完了
       label_open_line: 未完了
+    timelog_chart:
+      label_enable: 作業時間チャートを表示する
+      label_year: 年
+      label_month: 月
+      label_week: 週
+      label_day: 日
+      label_total_spent_time_per: "%{column}ごとの作業時間"
     mermaid_macro:
       label_enable: Wikiでmermaid記法を使うためのmermaidマクロを追加
     preview_attachment:

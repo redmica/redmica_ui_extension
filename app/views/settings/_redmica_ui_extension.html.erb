@@ -9,6 +9,11 @@
   <%= check_box_tag('settings[burndown_chart][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('burndown_chart')) %>
 </p>
 <p>
+  <%= label_tag('settings[timelog_chart][enabled]', I18n.t('redmica_ui_extension.timelog_chart.label_enable')) %>
+  <%= hidden_field_tag 'settings[timelog_chart][enabled]', 0 %>
+  <%= check_box_tag('settings[timelog_chart][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('timelog_chart')) %>
+</p>
+<p>
   <%= label_tag('settings[preview_attachment][enabled]', I18n.t('redmica_ui_extension.preview_attachment.label_enable')) %>
   <%= hidden_field_tag 'settings[preview_attachment][enabled]', 0 %>
   <%= check_box_tag('settings[preview_attachment][enabled]', 1, Setting.enabled_redmica_ui_extension_feature?('preview_attachment')) %>

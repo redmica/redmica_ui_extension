@@ -14,6 +14,11 @@ require File.dirname(__FILE__) + '/lib/burndown_chart/hook_listener'
 require File.dirname(__FILE__) + '/lib/burndown_chart/versions_helper_patch'
 VersionsHelper.include BurndownChart::VersionsHelperPatch
 
+# timelog_chart
+require File.dirname(__FILE__) + '/lib/timelog_chart/hook_listener'
+require File.dirname(__FILE__) + '/lib/timelog_chart/timelog_helper_patch'
+TimelogHelper.include TimelogChart::TimelogHelperPatch
+
 # mermaid macro
 require File.dirname(__FILE__) + '/lib/mermaid_macro/hook_listener'
 Redmine::WikiFormatting::Macros.register do
