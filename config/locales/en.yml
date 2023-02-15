@@ -1,8 +1,11 @@
 en:
   redmica_ui_extension:
     searchable_selectbox:
+      name: Searchable selectbox feature
       label_enable: Make the selection box searchable
+      label_enable_multiple_selectbox: Make the multiple selection box searchable
     burndown_chart:
+      name: Burndown chart feature
       label_enable: Display Burndown Chart
       label_issues_burndown: burndown
       label_issues_burndown_y_label: Number of Issues
@@ -10,6 +13,8 @@ en:
       label_total_substract_closed_line: Total - Closed
       label_open_line: Open
     mermaid_macro:
+      name: Mermaid macro feature
       label_enable: Add a mermaid macro to use the mermaid syntax in the wiki
     preview_attachment:
+      name: Preview attachment feature
       label_enable: Make attachments previewable

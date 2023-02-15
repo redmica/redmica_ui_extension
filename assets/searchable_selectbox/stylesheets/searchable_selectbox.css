@@ -1,4 +1,4 @@
-.select2-container--default .select2-selection--single {
+.select2-container--default .select2-selection {
   -webkit-appearance: none;
   -moz-appearance: none;
   -ms-appearance: none;
@@ -15,8 +15,12 @@
   font-family: Verdana, sans-serif;
 }
 
-.select2-container--default .select2-selection--single:focus {
-  border: 1px solid #5ad;
+.select2-container--default .select2-selection--multiple {
+  height: auto;
+}
+
+.select2-container--default .select2-selection:focus, .select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: 1px solid #5ad !important;
   outline: none;
 }
 
@@ -25,7 +29,7 @@
   font-family: Verdana, sans-serif;
 }
 
-.select2-container--default .select2-selection--single .select2-selection__rendered {
+.select2-container--default .select2-selection .select2-selection__rendered {
   color: #333;
   line-height: 22px;
 }
@@ -64,7 +68,7 @@ fieldset#filters td.values .select2-container--default {
 }
 
 /* Increase the height of the select box */
-.select2-container--default .select2-results>.select2-results__options{
+.select2-container--default .select2-selection--single .select2-results>.select2-results__options{
   max-height: 450px;
 }
 
@@ -85,4 +89,18 @@ li.select2-results__option--highlighted[role="option"][aria-selected] {
   padding-bottom: 5px;
   box-shadow: 0 3px 3px 0 rgba(0, 0, 0, .5);
   border: none;
+}
+
+.select2-selection--multiple:before {
+  content: "";
+  position: absolute;
+  right: 7px;
+  top: 42%;
+  border-top: 5px solid #888;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+.query-columns select[multiple] {
+  min-height: 200px;
 }

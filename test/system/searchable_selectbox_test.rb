@@ -109,4 +109,66 @@ class SearchableSelectboxTest < ApplicationSystemTestCase
       end
     end
   end
+
+  def test_searchable_selectbox_should_replace_multiple_selectbox_to_select2_if_enabled_multiple_selectbox_is_1
+    CustomField.find(1).update(multiple: true)
+
+    with_settings :plugin_redmica_ui_extension => {'searchable_selectbox' => {'enabled' => 1, 'enabled_multiple_selectbox' => 1}} do
+      log_user('jsmith', 'jsmith')
+      visit '/issues/1/edit'
+
+      assert page.has_css?('select#issue_custom_field_values_1.select2-hidden-accessible[multiple]')
+      assert page.has_css?('select#issue_custom_field_values_1 + .select2-container span.select2-selection--multiple')
+    end
+  end
+
+  def test_add_issues_filter_if_enabled_multiple_selectbox_is_1
+    with_settings :plugin_redmica_ui_extension => {'searchable_selectbox' => {'enabled' => 1, 'enabled_multiple_selectbox' => 1}} do
+      log_user('jsmith', 'jsmith')
+      visit '/issues'
+
+      within('table.issues.list') do
+        assert_equal 12, page.all(:css, 'table.issues.list tr').size
+      end
+
+      # Click Add filter selectbox
+      find('span[aria-labelledby="select2-add_filter_select-container"]').click
+      within '.select2-dropdown' do
+        # Input text
+        find('.select2-search__field').send_keys('Assignee')
+        # Make sure you have the options you expect
+        loop until has_content?('Assignee', wait: 10)
+        # Choose first one
+        find('.select2-search__field').send_keys(:enter)
+      end
+
+      # Switch singleselect to multiselect
+      find('tr#tr_assigned_to_id .toggle-multiselect').click
+      assert page.has_css?('tr#tr_assigned_to_id select#values_assigned_to_id_1.select2-hidden-accessible[multiple]')
+      assert page.has_css?('tr#tr_assigned_to_id select#values_assigned_to_id_1 + .select2-container span.select2-selection--multiple')
+
+      find('select#values_assigned_to_id_1 + span.select2-container').click
+      find('select#values_assigned_to_id_1 + span.select2-container .select2-search__field').send_keys('Dave')
+      find('.select2-search__field').send_keys(:enter)
+      find('select#values_assigned_to_id_1 + span.select2-container .select2-search__field').send_keys('john')
+      find('.select2-search__field').send_keys(:enter)
+      click_on 'Apply'
+
+      within('table.issues.list') do
+        assert_equal 4, page.all(:css, 'table.issues.list tr').size
+      end
+    end
+  end
+
+  def test_searchable_selectbox_should_not_apply_select2_to_columns_selectbox_in_query
+    with_settings :plugin_redmica_ui_extension => {'searchable_selectbox' => {'enabled' => 1, 'enabled_multiple_selectbox' => 1}} do
+      log_user('jsmith', 'jsmith')
+      visit '/issues'
+
+      find('fieldset#options legend').click
+
+      assert page.has_css?('select#available_c[multiple]')
+      assert page.has_css?('select#selected_c[multiple]')
+    end
+  end
 end
