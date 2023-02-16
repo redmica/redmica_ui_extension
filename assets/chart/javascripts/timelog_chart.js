@@ -37,6 +37,9 @@ function renderTimelogChart(canvas_id, title, chart_data){
         title: { display: true, text: title },
         tooltip: {
           callbacks: {
+            title: function(context) {
+              return context[0].dataset.label;
+            },
             label: function(context) {
               return context.dataset.tooltip[context.dataIndex];
             }
