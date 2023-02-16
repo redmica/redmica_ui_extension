@@ -2,16 +2,8 @@
       Setting.enabled_redmica_ui_extension_feature?('timelog_chart') &&
       @report && chart_datas = timelog_chart_datas(@report, params[:columns]) %>
   <div id="timelog_chart"></div>
-  <% if File.exist?("#{Rails.root}/public/javascripts/chart.min.js") # latest version 3.7.1 %>
-    <%= javascript_include_tag('chart.min') %>
-    <%= javascript_include_tag('../chart/javascripts/timelog_chart.js', plugin: 'redmica_ui_extension') %>
-  <% elsif File.exist?("#{Rails.root}/public/javascripts/Chart.bundle.min.js") # old version 2.8.0 %>
-    <%= javascript_include_tag('Chart.bundle.min') %>
-    <%= javascript_include_tag('../chart/javascripts/timelog_chart.2.8.0.js', plugin: 'redmica_ui_extension') %>
-  <% else %>
-    <%= javascript_include_tag('../chart/javascripts/chart.min.js', plugin: 'redmica_ui_extension') %>
-    <%= javascript_include_tag('../chart/javascripts/timelog_chart.js', plugin: 'redmica_ui_extension') %>
-  <% end %>
+  <%= javascript_include_tag('chart.min') %>
+  <%= javascript_include_tag('../chart/javascripts/timelog_chart.js', plugin: 'redmica_ui_extension') %>
   <%= javascript_tag do %>
     $(function() {
       <% chart_datas.each do |column, chart_data| %>
