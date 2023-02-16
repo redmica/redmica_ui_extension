@@ -53,18 +53,7 @@ function renderTimelogChart(canvas_id, title, chart_data){
         },
         y: {
           stacked: true,
-          ticks: {
-            // truncating sample in Chart configuration
-            //callback: function(value) {
-            //  var label = this.getLabelForValue(value);
-            //  if (chart_data.type=='horizontalBar') {
-            //    return String(label).substr(0, 20);
-            //  } else {
-            //    return label;
-            //  }
-            //},
-            beginAtZero: true
-          },
+          ticks: { beginAtZero: true },
           afterFit: function(scaleInstance) {
             if (chart_data.type=='horizontalBar') {
               scaleInstance.width = 180;
