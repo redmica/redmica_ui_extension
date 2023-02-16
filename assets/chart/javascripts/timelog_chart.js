@@ -4,10 +4,18 @@ function renderTimelogChart(canvas_id, title, chart_data){
   chart_data.datasets[0].backgroundColor = [];
   chart_data.datasets[0].borderColor = [];
   chart_data.datasets[0].borderWidth = [];
-  for (var i = 0; i < chart_data.datasets[0].data.length; i++) {
-    chart_data.datasets[0].backgroundColor[i] = backgroundColors[i % backgroundColors.length];
-    chart_data.datasets[0].borderColor[i] = borderColors[i % backgroundColors.length];
-    chart_data.datasets[0].borderWidth[i] = 1;
+  if (chart_data.type=='bar') {
+    for (var i = 0; i < chart_data.datasets[0].data.length; i++) {
+      chart_data.datasets[0].backgroundColor[i] = backgroundColors[i % backgroundColors.length];
+      chart_data.datasets[0].borderColor[i] = borderColors[i % backgroundColors.length];
+      chart_data.datasets[0].borderWidth[i] = 1;
+    }
+  } else if (chart_data.type=='horizontalBar') {
+    for (var i = 0; i < chart_data.datasets.length; i++) {
+      chart_data.datasets[i].backgroundColor = backgroundColors[i % backgroundColors.length];
+      chart_data.datasets[i].borderColor = borderColors[i % backgroundColors.length];
+      chart_data.datasets[i].borderWidth = 1;
+    }
   }
   var index_axis = (chart_data.type=='horizontalBar') ? 'y' : 'x';
   if (chart_data.type=='horizontalBar') {
@@ -30,9 +38,11 @@ function renderTimelogChart(canvas_id, title, chart_data){
       },
       scales: {
         x: {
+          stacked: true,
           ticks: { beginAtZero: true }
         },
         y: {
+          stacked: true,
           ticks: {
             // truncating sample in Chart configuration
             //callback: function(value) {

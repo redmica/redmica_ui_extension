@@ -4,10 +4,18 @@ function renderTimelogChart(canvas_id, title, chart_data){
   chart_data.datasets[0].backgroundColor = [];
   chart_data.datasets[0].borderColor = [];
   chart_data.datasets[0].borderWidth = [];
-  for (var i = 0; i < chart_data.datasets[0].data.length; i++) {
-    chart_data.datasets[0].backgroundColor[i] = backgroundColors[i % backgroundColors.length];
-    chart_data.datasets[0].borderColor[i] = borderColors[i % backgroundColors.length];
-    chart_data.datasets[0].borderWidth[i] = 1;
+  if (chart_data.type=='bar') {
+    for (var i = 0; i < chart_data.datasets[0].data.length; i++) {
+      chart_data.datasets[0].backgroundColor[i] = backgroundColors[i % backgroundColors.length];
+      chart_data.datasets[0].borderColor[i] = borderColors[i % backgroundColors.length];
+      chart_data.datasets[0].borderWidth[i] = 1;
+    }
+  } else if (chart_data.type=='horizontalBar') {
+    for (var i = 0; i < chart_data.datasets.length; i++) {
+      chart_data.datasets[i].backgroundColor = backgroundColors[i % backgroundColors.length];
+      chart_data.datasets[i].borderColor = borderColors[i % backgroundColors.length];
+      chart_data.datasets[i].borderWidth = 1;
+    }
   }
   if (chart_data.type=='horizontalBar') {
     var ctx = $(canvas_id);
@@ -25,8 +33,9 @@ function renderTimelogChart(canvas_id, title, chart_data){
       legend: { display: false },
       title: { display: true, text: title },
       scales: {
-        xAxes: [ { ticks: { beginAtZero: true } } ],
+        xAxes: [ { stacked: true, ticks: { beginAtZero: true } } ],
         yAxes: [{
+          stacked: true,
           ticks: { beginAtZero: true },
           afterFit: function(scaleInstance) {
             if (chart_data.type=='horizontalBar') {
