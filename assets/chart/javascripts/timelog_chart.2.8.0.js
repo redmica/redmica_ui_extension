@@ -32,6 +32,13 @@ function renderTimelogChart(canvas_id, title, chart_data){
       responsive: true,
       legend: { display: false },
       title: { display: true, text: title },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            return data.datasets[tooltipItem.datasetIndex].tooltip[tooltipItem.index];
+          }
+        }
+      },
       scales: {
         xAxes: [ { stacked: true, ticks: { beginAtZero: true } } ],
         yAxes: [{

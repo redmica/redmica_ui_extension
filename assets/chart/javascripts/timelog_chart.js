@@ -34,7 +34,14 @@ function renderTimelogChart(canvas_id, title, chart_data){
       responsive: true,
       plugins: {
         legend: { display: false },
-        title: { display: true, text: title }
+        title: { display: true, text: title },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return context.dataset.tooltip[context.dataIndex];
+            }
+          }
+        },
       },
       scales: {
         x: {

@@ -26,13 +26,14 @@ class TimelogHelperPatchTest < Redmine::HelperTest
     assert chart_data['month']
     assert_equal report.periods, chart_data['month'][:labels]
     assert_equal 'bar', chart_data['month'][:type]
-    assert_equal [{:data => [3.75, 7.25]}], chart_data['month'][:datasets]
+    assert_equal [{:data => [3.75, 7.25], :tooltip => [format_hours(3.75), format_hours(7.25)]}], chart_data['month'][:datasets]
 
     assert chart_data['user']
     assert_equal [user_1, user_2].map(&:name), chart_data['user'][:labels]
     assert_equal 'horizontalBar', chart_data['user'][:type]
-    assert_equal [{:label => report.periods[0], :data => [1.25, 2.5]},
-                  {:label => report.periods[1], :data => [5.0, 2.25]}], chart_data['user'][:datasets]
+    expected_datasets = [{:label => report.periods[0], :data => [1.25, 2.5], :tooltip => [format_hours(1.25), format_hours(2.5)]},
+                         {:label => report.periods[1], :data => [5.0, 2.25], :tooltip => [format_hours(5.0), format_hours(2.25)]}]
+    assert_equal expected_datasets, chart_data['user'][:datasets]
   end
 
   def test_timelog_chart_datas_should_return_empty_data_when_report_is_nil
