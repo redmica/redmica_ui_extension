@@ -19,11 +19,8 @@ function renderTimelogChart(canvas_id, title, chart_data){
   }
   var index_axis = (chart_data.type=='horizontalBar') ? 'y' : 'x';
   if (chart_data.type=='horizontalBar') {
-    var ctx = $(canvas_id);
-    if (chart_data.labels.length > 40) {
-      ctx.attr('height', chart_data.labels.length * 5);
-    } else {
-      ctx.attr('height', 20 + chart_data.labels.length * 20);
+    if (chart_data.labels.length < 6) {
+      $(canvas_id).attr('height', 20 + chart_data.labels.length * 20);
     }
   }
   new Chart($(canvas_id), {
@@ -56,7 +53,12 @@ function renderTimelogChart(canvas_id, title, chart_data){
           ticks: { beginAtZero: true },
           afterFit: function(scaleInstance) {
             if (chart_data.type=='horizontalBar') {
-              scaleInstance.width = 180;
+              if (this.isMobile()) {
+                scaleInstance.options.display = false;
+              } else {
+                scaleInstance.options.display = true;
+                scaleInstance.width = 180;
+              }
             }
           }
         }
