@@ -70,7 +70,12 @@ function replaceSelect2() {
   if ($('body').hasClass('controller-workflows')) {
     return;
   } else {
-    var selectInTabular = $('.tabular .splitcontent select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
+    if ($('#template_area').length) {
+      // This code is for the `Support Built-In / Custom Fields` feature of the redmine_issue_templates plugin.
+      var selectInTabular = $('.tabular .splitcontent select:not([multiple]):not([data-remote])');
+    } else {
+      var selectInTabular = $('.tabular .splitcontent select:not([multiple]):not([data-remote]):not(.select2-hidden-accessible)');
+    }
     if (selectInTabular.length) {
       selectInTabular.select2({
         width: 'style'
