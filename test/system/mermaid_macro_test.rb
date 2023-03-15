@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../../../../../test/application_system_test_case', __FILE__)
+require_relative '../../../../test/application_system_test_case'
 
 class MermaidMacroTest < ApplicationSystemTestCase
   fixtures :projects, :users, :email_addresses, :roles, :members, :member_roles,

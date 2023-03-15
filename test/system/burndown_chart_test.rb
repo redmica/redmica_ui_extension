@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require File.expand_path('../../../../../test/application_system_test_case', __FILE__)
+require_relative '../../../../test/application_system_test_case'
 
 class BurndownChartTest < ApplicationSystemTestCase
   fixtures :projects, :enabled_modules, :versions,
