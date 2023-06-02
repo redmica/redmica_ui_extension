@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: test-sqlite-screenshots
+          name: test-postgres-${{ matrix.redmica_version }}-screenshots
           path: /usr/src/redmine/tmp/screenshots
           retention-days: 1
       - name: Test RedMica
@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: test-mysql-screenshots
+          name: test-mysql-${{ matrix.redmica_version }}-screenshots
           path: /usr/src/redmine/tmp/screenshots
           retention-days: 1
       - name: Test RedMica
@@ -102,7 +102,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: test-sqlite-screenshots
+          name: test-sqlite-${{ matrix.redmica_version }}-screenshots
           path: /usr/src/redmine/tmp/screenshots
           retention-days: 1
       - name: Test RedMica
