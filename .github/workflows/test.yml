@@ -31,10 +31,12 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: test-postgres-screenshots
+          name: test-sqlite-screenshots
+          path: /usr/src/redmine/tmp/screenshots
+          retention-days: 1
       - name: Test RedMica
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test
 
@@ -65,11 +67,12 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-mysql-screenshots
           path: /usr/src/redmine/tmp/screenshots
+          retention-days: 1
       - name: Test RedMica
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test
 
@@ -96,9 +99,11 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: test-sqlite-screenshots
+          path: /usr/src/redmine/tmp/screenshots
+          retention-days: 1
       - name: Test RedMica
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test
