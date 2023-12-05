@@ -35,5 +35,6 @@ Redmine::WikiFormatting::Macros.register do
 end
 
 # preview_attachment
+require File.dirname(__FILE__) + '/lib/preview_attachment/application_helper_patch'
 require File.dirname(__FILE__) + '/lib/preview_attachment/hook_listener'
 ApplicationHelper.include PreviewAttachment::ApplicationHelperPatch
