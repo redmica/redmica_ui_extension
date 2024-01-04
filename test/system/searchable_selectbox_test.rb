@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../../test/application_system_test_case'
+require_relative '../playwright_system_test_case'
 
-class SearchableSelectboxTest < ApplicationSystemTestCase
+class SearchableSelectboxTest < PlaywrightSystemTestCase
   fixtures :projects, :users, :email_addresses, :roles, :members, :member_roles,
            :trackers, :projects_trackers, :enabled_modules, :issue_statuses, :issues,
            :enumerations, :custom_fields, :custom_values, :custom_fields_trackers,
@@ -71,9 +71,7 @@ class SearchableSelectboxTest < ApplicationSystemTestCase
       log_user('jsmith', 'jsmith')
       visit '/issues'
 
-      within('table.issues.list') do
-        assert_equal 12, page.all(:css, 'table.issues.list tr').size
-      end
+      assert_equal 12, page.all(:css, 'table.issues.list tr').size
 
       # Click Add filter selectbox
       find('span[aria-labelledby="select2-add_filter_select-container"]').click
@@ -104,9 +102,7 @@ class SearchableSelectboxTest < ApplicationSystemTestCase
       end
       click_on 'Apply'
 
-      within('table.issues.list') do
-        assert_equal 2, page.all(:css, 'table.issues.list tr').size
-      end
+      assert_equal 2, page.all(:css, 'table.issues.list tr').size
     end
   end
 end

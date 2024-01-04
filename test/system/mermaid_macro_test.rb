@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../../test/application_system_test_case'
+require_relative '../playwright_system_test_case'
 
-class MermaidMacroTest < ApplicationSystemTestCase
+class MermaidMacroTest < PlaywrightSystemTestCase
   fixtures :projects, :users, :email_addresses, :roles, :members, :member_roles,
            :trackers, :projects_trackers, :enabled_modules, :issue_statuses, :issues,
            :enumerations, :custom_fields, :custom_values, :custom_fields_trackers,
@@ -20,7 +20,7 @@ class MermaidMacroTest < ApplicationSystemTestCase
 
       # Test that the diagram is not in an incorrectly drawn state.
       assert_selector '.mermaid svg text.error-text', count: 0
-      assert_not_equal '0', first('.mermaid svg foreignObject')['width']
+      assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
 
@@ -33,6 +33,7 @@ class MermaidMacroTest < ApplicationSystemTestCase
     first('.icon-edit').click
     fill_in 'issue_notes', with: "{{mermaid\ngraph TD;\nA-->B;\nA-->C;\nB-->D;\nC-->D;\n}}"
     find('a.tab-preview').click
+    sleep 1
 
     assert_selector 'div.wiki.wiki-preview' do
       assert_selector '.mermaid svg'
@@ -40,7 +41,7 @@ class MermaidMacroTest < ApplicationSystemTestCase
 
       # Test that the diagram is not in an incorrectly drawn state.
       assert_selector '.mermaid svg text.error-text', count: 0
-      assert_not_equal '0', first('.mermaid svg foreignObject')['width']
+      assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
 
@@ -61,7 +62,7 @@ class MermaidMacroTest < ApplicationSystemTestCase
 
       # Test that the diagram is not in an incorrectly drawn state.
       assert_selector '.mermaid svg text.error-text', count: 0
-      assert_not_equal '0', first('.mermaid svg foreignObject')['width']
+      assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
 
@@ -77,7 +78,7 @@ class MermaidMacroTest < ApplicationSystemTestCase
 
       # Test that the diagram is not in an incorrectly drawn state.
       assert_selector '.mermaid svg text.error-text', count: 0
-      assert_not_equal '0', first('.mermaid svg foreignObject')['width']
+      assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
 end

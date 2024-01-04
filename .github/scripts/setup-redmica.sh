@@ -13,7 +13,6 @@ tar -xf redmine.tar.gz --strip-components=1
 
 cp -r $GITHUB_WORKSPACE ./plugins
 cp ./plugins/redmica_ui_extension/.github/templates/database-$database.yml config/database.yml
-cp ./plugins/redmica_ui_extension/.github/templates/application_system_test_case.rb test/application_system_test_case.rb
 
 ls
 
@@ -40,6 +39,15 @@ apt-get install -y --no-install-recommends \
     libsqlite3-dev \
     make \
     patch;
+
+# Setup playwright for E2E test
+apt-get update && apt-get install -y ca-certificates curl gnupg
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+apt-get update && apt-get install nodejs -y
+npm install playwright
+npx playwright install chromium
+npx playwright install-deps
 
 # PDFのサムネイル作成テストを成功させるため
 sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml

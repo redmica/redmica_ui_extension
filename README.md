@@ -66,8 +66,11 @@ $ git clone https://github.com/redmica/redmica_ui_extension.git /path/to/redmine
 ```
 ## Test
 
-Chrome Driver required to run system tests. You can also use [selenium/standalone-chrome-debug](https://hub.docker.com/r/selenium/standalone-chrome-debug).
 ```
+$ # for system test
+$ npm install playwright
+$ npx playwright install chromium
+$ npx playwright install-deps
 $ RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
 ```
 

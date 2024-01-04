@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require_relative '../../../../test/application_system_test_case'
+require_relative '../playwright_system_test_case'
 
-class BurndownChartTest < ApplicationSystemTestCase
+class BurndownChartTest < PlaywrightSystemTestCase
   fixtures :projects, :enabled_modules, :versions,
            :users, :members, :roles, :member_roles,
            :trackers, :projects_trackers, :enumerations, :issue_statuses, :issues

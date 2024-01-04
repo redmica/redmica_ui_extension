@@ -5,16 +5,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v2.3.0", "master"]
+        redmica_version: ["v2.4.0", "master"]
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.7
+      image: ruby:3.2
     services:
-      chrome:
-        image: selenium/standalone-chrome:latest
-        options: --shm-size=256m
-        ports:
-          - 4444:4444
       db:
         image: postgres:11
         env:
@@ -44,16 +39,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v2.3.0", "master"]
+        redmica_version: ["v2.4.0", "master"]
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.7
+      image: ruby:3.2
     services:
-      chrome:
-        image: selenium/standalone-chrome:latest
-        options: --shm-size=256m
-        ports:
-          - 4444:4444
       db:
         image: mysql:5
         env:
@@ -80,16 +70,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v2.3.0", "master"]
+        redmica_version: ["v2.4.0", "master"]
     runs-on: ubuntu-latest
     container:
-      image: ruby:2.7
-    services:
-      chrome:
-        image: selenium/standalone-chrome:latest
-        options: --shm-size=256m
-        ports:
-          - 4444:4444
+      image: ruby:3.2
     steps:
       - uses: actions/checkout@v3
       - name: Setup
