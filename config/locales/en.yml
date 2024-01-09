@@ -9,6 +9,13 @@ en:
       label_ideal_line: Ideal
       label_total_substract_closed_line: Total - Closed
       label_open_line: Open
+    timelog_chart:
+      label_enable: Display Timelog Chart
+      label_year: Year
+      label_month: Month
+      label_week: Week
+      label_day: Day
+      label_total_spent_time_per: Total spent time per %{column}
     mermaid_macro:
       label_enable: Add a mermaid macro to use the mermaid syntax in the wiki
     preview_attachment:

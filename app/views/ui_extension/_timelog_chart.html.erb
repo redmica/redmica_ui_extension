@@ -1,0 +1,19 @@
+<% if controller_name == 'timelog' && action_name == 'report' &&
+      Setting.enabled_redmica_ui_extension_feature?('timelog_chart') &&
+      @report && chart_datas = timelog_chart_datas(@report, params[:columns]) %>
+  <div id="timelog_chart"></div>
+  <%= javascript_include_tag('chart.min') %>
+  <%= javascript_include_tag('../chart/javascripts/timelog_chart.js', plugin: 'redmica_ui_extension') %>
+  <%= javascript_tag do %>
+    $(function() {
+      <% chart_datas.each do |column, chart_data| %>
+          <% humanize_column = (c = @report.available_criteria[column]) ? l_or_humanize(c[:label]) : l("redmica_ui_extension.timelog_chart.label_#{column}") %>
+          var canvas_id ='<%= column %>_timelog_chart';
+          var title = '<%= I18n.t('redmica_ui_extension.timelog_chart.label_total_spent_time_per', :column => humanize_column) %>';
+          var chartData = <%= chart_data.to_json.html_safe %>;
+          $('#timelog_chart').append(`<canvas id="${canvas_id}"></canvas>`);
+          renderTimelogChart(`#${canvas_id}`, title, chartData);
+      <% end %>
+    });
+  <% end %>
+<% end %>
