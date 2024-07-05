@@ -64,6 +64,9 @@ fieldset#filters td.values .select2-container--default {
 }
 
 /* Increase the height of the select box */
+.select2-results__options li:empty::before {
+  content: "\00a0";
+}
 .select2-container--default .select2-results>.select2-results__options{
   max-height: 450px;
 }
