@@ -55,6 +55,11 @@ sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
 # DB側のログを表示しないため(additional_environment.rbでログを標準出力に出している)
 rm -f ./config/additional_environment.rb
 
+# Temporary workaround to avoid test failures due to the change
+# from unprocessable_entity to unprocessable_content in Rack 3.1.0.
+# https://github.com/rack/rack/pull/2137
+echo "gem 'rack', '< 3.1.0'" >> Gemfile.local
+
 bundle install --with test development
 bundle update
 bundle exec rake db:create db:migrate RAILS_ENV=test
