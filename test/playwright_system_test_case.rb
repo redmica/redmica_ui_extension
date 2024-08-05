@@ -3,18 +3,7 @@
 require_relative '../../../test/test_helper'
 
 class PlaywrightSystemTestCase < ActionDispatch::SystemTestCase
-  Capybara.register_driver(:playwright) do |app|
-    driver_opts = {
-      browser_type: :chromium,
-      headless: true
-    }
-    Capybara::Playwright::Driver.new(app, **driver_opts)
-  end
-
-  Capybara.default_driver = :playwright
-  Capybara.javascript_driver = :playwright
-
-  driven_by(:playwright)
+  driven_by(:playwright, options: { headless: true, browser_type: :chromium })
 
   # Should not depend on locale since Redmine displays login page
   # using default browser locale which depend on system locale for "real" browsers drivers
