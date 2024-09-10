@@ -48,12 +48,8 @@ class ApplicationHelperPatchTest < Redmine::HelperTest
 
   def test_link_to_attachment_should_return_preview_link_when_setting_is_enabled_and_class_option_includes_icon_download
     with_settings :plugin_redmica_ui_extension => {'preview_attachment' => {'enabled' => 1}} do
-      original_link = '<a class="icon-download" href="/attachments/download/3/logo.gif">logo.gif</a>'.html_safe
-      preview_link = content_tag('span', '', :class => 'preview-attachment icon-only icon-zoom-in',
-                                 :data => { :bp => 'logo.gif',
-                                            :bp_src => 'imgSrc',
-                                            :url => 'http://test.host/attachments/download/3/logo.gif' },
-                                 :onclick => 'previewAttachment(this)')
+      original_link = '<a class="icon-download" href="/attachments/download/3/logo.gif">logo.gif</a>'
+      preview_link = '<a class="preview-attachment icon-only icon-zoom-in" data-bp="logo.gif" data-bp-src="imgSrc" data-url="http://test.host/attachments/download/3/logo.gif" onclick="previewAttachment(this);return false;" href="#"></a>'
       assert_equal(
         preview_link + original_link,
         link_to_attachment(@attachment, {:download => true, :class => 'icon-download'}))
