@@ -58,7 +58,12 @@ rm -f ./config/additional_environment.rb
 # Temporary workaround to avoid test failures due to the change
 # from unprocessable_entity to unprocessable_content in Rack 3.1.0.
 # https://github.com/rack/rack/pull/2137
-echo "gem 'rack', '< 3.1.0'" >> Gemfile.local
+if ! grep -q "rack" Gemfile; then
+  echo "gem 'rack', '< 3.1.0'" >> Gemfile.local
+  echo "rack gem added to Gemfile.local"
+else
+  echo "rack gem already exists in Gemfile"
+fi
 
 bundle install --with test development
 bundle update
