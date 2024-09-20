@@ -10,3 +10,8 @@
 .mermaid .task {
   height: 20px;
 }
+
+div.mermaid svg {
+  width: initial;
+  height: initial;
+}
