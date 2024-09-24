@@ -81,4 +81,25 @@ class MermaidMacroTest < PlaywrightSystemTestCase
       assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
+
+  def test_mermaid_macro_has_non_zero_size
+    log_user('admin', 'admin')
+    issue = Issue.find(1)
+    issue.journals.first.update(notes: "{{mermaid\ngraph TD;\nA-->B;\nA-->C;\nB-->D;\nC-->D;\n}}")
+    visit "/issues/#{issue.id}?tab=notes"
+
+    width, height = page.driver.evaluate_script <<-JS
+      (function() {
+        var svg = document.querySelector('div.mermaid svg');
+        if (!svg) return [0, 0];
+        var rect = svg.getBoundingClientRect();
+        return [rect.width, rect.height];
+      })();
+    JS
+    assert width > 0, "SVG width should be greater than 0, but it's #{width}."
+    assert height > 0, "SVG height should be greater than 0, but it's #{height}."
+
+    svg = find("div.mermaid svg")
+    assert svg.visible?, "SVG should be visible but it's not."
+  end
 end
