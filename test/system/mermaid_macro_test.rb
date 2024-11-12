@@ -102,4 +102,39 @@ class MermaidMacroTest < PlaywrightSystemTestCase
     svg = find("div.mermaid svg")
     assert svg.visible?, "SVG should be visible but it's not."
   end
+
+  def test_mermaid_macro_when_resize_window
+    log_user('admin', 'admin')
+    issue = Issue.find(1)
+    issue.journals.first.update(notes: "{{mermaid\nsequenceDiagram\nA->>B: next\nB->>C: next\nC->>D: next\nD->>E: next\nE->>F: next;\n}}")
+    visit "/issues/#{issue.id}?tab=notes"
+
+    Capybara.current_session.current_window.resize_to(2000, 1080) # non responsive mode
+    assert_selector('a.mobile-toggle-button', count: 0)
+    width_in_wide_screen, height_in_wide_screen = page.driver.evaluate_script <<-JS
+      (function() {
+        var svg = document.querySelector('div.mermaid svg');
+        if (!svg) return [0, 0];
+        var rect = svg.getBoundingClientRect();
+        return [rect.width, rect.height];
+      })();
+    JS
+
+    Capybara.current_session.current_window.resize_to(899, 1080) # responsive mode
+    assert_selector('a.mobile-toggle-button', count: 1)
+    width_in_responsive_mode_screen, height_in_responsive_mode_screen = page.driver.evaluate_script <<-JS
+      (function() {
+        var svg = document.querySelector('div.mermaid svg');
+        if (!svg) return [0, 0];
+        var rect = svg.getBoundingClientRect();
+        return [rect.width, rect.height];
+      })();
+    JS
+
+    # Check height and width of the svg is smaller than before when the screen width is changed.
+    assert height_in_wide_screen > height_in_responsive_mode_screen
+    assert height_in_responsive_mode_screen > 0
+    assert width_in_wide_screen > width_in_responsive_mode_screen
+    assert width_in_responsive_mode_screen > 0
+  end
 end

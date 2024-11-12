@@ -11,7 +11,7 @@
   height: 20px;
 }
 
+/* Fix https://github.com/mermaid-js/mermaid/issues/1984 */
 div.mermaid svg {
-  width: initial;
-  height: initial;
+  height: auto;
 }
