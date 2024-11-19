@@ -33,7 +33,7 @@ module PreviewAttachment
 
         filename = attachment.filename
         url = download_named_attachment_url(attachment, { filename: filename })
-        link_to('', '#', :class => 'preview-attachment icon-only icon-zoom-in',
+        link_to(sprite_icon('zoom-in'), '#', :class => 'preview-attachment icon-only icon-zoom-in',
                     :data => { :bp => filename, :bp_src => bp_src, :url => url },
                     :onclick => 'previewAttachment(this);return false;') + original_link
       end
