@@ -1,11 +1,3 @@
-.before-init-mermaid {
-  opacity: 0;
-}
-
-.mermaid-error-message {
-  display: none;
-}
-
 /* Fix https: //github.com/redmica/redmica_ui_extension/issues/38 */
 .mermaid .task {
   height: 20px;
