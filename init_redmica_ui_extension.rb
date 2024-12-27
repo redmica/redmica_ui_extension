@@ -29,8 +29,8 @@ Redmine::WikiFormatting::Macros.register do
   macro :mermaid do |_obj, _args, text|
     tmp_id = "mermaid-#{SecureRandom.hex(10)}"
 
-    content_tag(:div, text, class: 'mermaid before-init-mermaid', id: tmp_id) +
-      javascript_tag("initMermaidMacro('#{tmp_id}');")
+    content_tag(:div, text, class: 'mermaid', id: tmp_id) +
+      javascript_tag("renderMermaidMacro('##{tmp_id}');")
   end
 end
 
