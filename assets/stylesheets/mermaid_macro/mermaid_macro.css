@@ -7,3 +7,7 @@
 div.mermaid svg {
   height: auto;
 }
+
+/* Hide the diagram until it has been converted to a diagram by mermaid.js (until data-processed="true") */
+.mermaid:not([data-processed]) { display: none; }
+.mermaid[data-processed="true"] { display: block; }
