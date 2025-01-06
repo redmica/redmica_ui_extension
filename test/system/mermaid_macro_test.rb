@@ -3,10 +3,6 @@
 require_relative '../playwright_system_test_case'
 
 class MermaidMacroTest < PlaywrightSystemTestCase
-  fixtures :projects, :users, :email_addresses, :roles, :members, :member_roles,
-           :trackers, :projects_trackers, :enabled_modules, :issue_statuses, :issues,
-           :enumerations, :custom_fields, :custom_values, :custom_fields_trackers,
-           :watchers, :journals, :journal_details
 
   def test_mermaid_macro_in_issue_page
     log_user('jsmith', 'jsmith')
@@ -15,12 +11,23 @@ class MermaidMacroTest < PlaywrightSystemTestCase
     visit "/issues/#{issue.id}"
 
     assert_selector "div#journal-#{issue.journals.first.id}-notes" do
-      assert_selector '.mermaid svg'
-      assert_selector '.mermaid.before_init_mermaid', count: 0
+      assert_selector '.mermaid[data-processed="true"] svg'
+      assert_selector '.mermaid:not([data-processed])', count: 0
 
       # Test that the diagram is not in an incorrectly drawn state.
-      assert_selector '.mermaid svg text.error-text', count: 0
+      assert_selector '.mermaid svg path.error-icon', count: 0
       assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
+    end
+  end
+
+  def test_mermaid_macro_error
+    log_user('jsmith', 'jsmith')
+    issue = Issue.find(1)
+    issue.journals.first.update(notes: "{{mermaid\nError\n}}")
+    visit "/issues/#{issue.id}"
+
+    assert_selector "div#journal-#{issue.journals.first.id}-notes" do
+      assert_selector '.mermaid[data-processed="true"] svg path.error-icon'
     end
   end
 
@@ -36,11 +43,11 @@ class MermaidMacroTest < PlaywrightSystemTestCase
     sleep 1
 
     assert_selector 'div.wiki.wiki-preview' do
-      assert_selector '.mermaid svg'
-      assert_selector '.mermaid.before_init_mermaid', count: 0
+      assert_selector '.mermaid[data-processed="true"] svg'
+      assert_selector '.mermaid:not([data-processed])', count: 0
 
       # Test that the diagram is not in an incorrectly drawn state.
-      assert_selector '.mermaid svg text.error-text', count: 0
+      assert_selector '.mermaid svg path.error-icon', count: 0
       assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
@@ -57,11 +64,11 @@ class MermaidMacroTest < PlaywrightSystemTestCase
     end
 
     assert_selector "div#journal-#{issue.journals.first.id}-notes" do
-      assert_selector '.mermaid svg'
-      assert_selector '.mermaid.before_init_mermaid', count: 0
+      assert_selector '.mermaid[data-processed="true"] svg'
+      assert_selector '.mermaid:not([data-processed])', count: 0
 
       # Test that the diagram is not in an incorrectly drawn state.
-      assert_selector '.mermaid svg text.error-text', count: 0
+      assert_selector '.mermaid svg path.error-icon', count: 0
       assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
@@ -73,11 +80,11 @@ class MermaidMacroTest < PlaywrightSystemTestCase
     visit "/issues/#{issue.id}?tab=notes"
 
     assert_selector "div#journal-#{issue.journals.first.id}-notes" do
-      assert_selector '.mermaid svg'
-      assert_selector '.mermaid.before_init_mermaid', count: 0
+      assert_selector '.mermaid[data-processed="true"] svg'
+      assert_selector '.mermaid:not([data-processed])', count: 0
 
       # Test that the diagram is not in an incorrectly drawn state.
-      assert_selector '.mermaid svg text.error-text', count: 0
+      assert_selector '.mermaid svg path.error-icon', count: 0
       assert_not_equal '0', first('.mermaid svg .node foreignObject')['width']
     end
   end
