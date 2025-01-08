@@ -11,7 +11,7 @@ function initAllMermaidMacro() {
 function renderMermaidMacro(selector) {
   if (typeof mermaid === 'undefined' || document.readyState !== 'complete') return;
 
-  mermaid.run({ querySelector: selector });
+  mermaid.run({ querySelector: selector, suppressErrors: true});
 }
 
 initAllMermaidMacro();
