@@ -84,7 +84,7 @@ class MermaidMacroTest < PlaywrightSystemTestCase
     visit "/issues/#{issue.id}?tab=notes"
 
     assert_selector "div#journal-#{issue.journals.first.id}-notes" do
-      assert_selector '.mermaid[data-processed="true"] svg'
+      assert_selector '.mermaid[data-processed="true"] svg', wait: 5
       assert_selector '.mermaid:not([data-processed])', count: 0
 
       # Test that the diagram is not in an incorrectly drawn state.

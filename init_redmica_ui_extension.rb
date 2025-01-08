@@ -30,7 +30,7 @@ Redmine::WikiFormatting::Macros.register do
     tmp_id = "mermaid-#{SecureRandom.hex(10)}"
 
     content_tag(:div, text, class: 'mermaid', id: tmp_id) +
-      javascript_tag("renderMermaidMacro('##{tmp_id}');")
+      javascript_tag("await renderMermaidMacro('##{tmp_id}');", type: 'module')
   end
 end
 
