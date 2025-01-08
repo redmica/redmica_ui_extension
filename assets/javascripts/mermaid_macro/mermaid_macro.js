@@ -11,7 +11,11 @@ function initAllMermaidMacro() {
 function renderMermaidMacro(selector) {
   if (typeof mermaid === 'undefined' || document.readyState !== 'complete') return;
 
-  mermaid.run({ querySelector: selector, suppressErrors: true});
+  /* Workaround for duplicate IDs when multiple mermaid macros are in one comment */
+  /* https://github.com/redmica/redmica_ui_extension/pull/63#discussion_r1905198612 */
+  setTimeout(() => {
+    mermaid.run({ querySelector: selector, suppressErrors: true});
+  }, 10);
 }
 
 initAllMermaidMacro();
