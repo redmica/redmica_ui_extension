@@ -26,7 +26,7 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-postgres-${{ matrix.redmica_version }}-screenshots
@@ -58,7 +58,7 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-mysql-${{ matrix.redmica_version }}-screenshots
@@ -85,7 +85,7 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: test-sqlite-${{ matrix.redmica_version }}-screenshots
