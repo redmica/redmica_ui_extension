@@ -42,8 +42,7 @@ fieldset#filters td.values .select2-container--default {
   min-width: 100px;
 }
 .tabular .splitcontent .select2-container {
-  width: 75%;
-  max-width: 300px;
+  width: 60%; /* Match the width of the select element before applying select2 */
 }
 #add_filter_select + .select2-container,
 #group_by + .select2-container {
