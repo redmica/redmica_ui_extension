@@ -43,7 +43,6 @@ fieldset#filters td.values .select2-container--default {
 }
 .tabular .splitcontent .select2-container {
   width: 75%;
-  max-width: 300px;
 }
 #add_filter_select + .select2-container,
 #group_by + .select2-container {
