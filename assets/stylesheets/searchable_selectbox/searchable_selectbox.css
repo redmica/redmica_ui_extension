@@ -8,21 +8,18 @@
   vertical-align: middle;
   margin-top: 1px;
   margin-bottom: 1px;
-  font: 400 11px system-ui;
   border: 1px solid #ccc;
   border-radius: 3px;
   height: 24px;
-  font-family: Verdana, sans-serif;
+}
+
+.select2-results__option, .select2-container--default .select2-selection--single {
+  font-size: 0.834rem;
 }
 
 .select2-container--default .select2-selection--single:focus {
   border: 1px solid #5ad;
   outline: none;
-}
-
-.select2-results__option {
-  font: 400 11px system-ui;
-  font-family: Verdana, sans-serif;
 }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
