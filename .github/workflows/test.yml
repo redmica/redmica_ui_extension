@@ -5,13 +5,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.1.0", "master"]
+        redmica_version: ["v3.2.5", "master"]
     runs-on: ubuntu-latest
     container:
-      image: ruby:3.3
+      image: ruby:3.4
     services:
       db:
-        image: postgres:11
+        image: postgres:14
         env:
           LANG: C.UTF-8
           POSTGRES_INITDB_ARGS: --locale=C.UTF-8
@@ -40,13 +40,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.1.0", "master"]
+        redmica_version: ["v3.2.5", "master"]
     runs-on: ubuntu-latest
     container:
-      image: ruby:3.3
+      image: ruby:3.4
     services:
       db:
-        image: mysql:5
+        image: mysql:8
         env:
           MYSQL_ROOT_PASSWORD: password
     steps:
@@ -72,10 +72,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.1.0", "master"]
+        redmica_version: ["v3.2.5", "master"]
     runs-on: ubuntu-latest
     container:
-      image: ruby:3.3
+      image: ruby:3.4
     steps:
       - uses: actions/checkout@v4
       - name: Setup
