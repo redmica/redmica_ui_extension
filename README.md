@@ -78,7 +78,7 @@ $ RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
 
 - Select2 4.0.13
   - LICENSE: https://github.com/select2/select2/blob/master/LICENSE.md
-- mermaid.js 11.4.1
+- mermaid.js 11.12.1
   - LICENSE: https://github.com/mermaid-js/mermaid/blob/master/LICENSE
   - mermaid.js includes code from DOMPurify, which is licensed under the Mozilla Public License Version 2.0 (MPL 2.0). See `LICENSE.MPL-2.0` for details.
 - BigPicture.js 2.6.1
