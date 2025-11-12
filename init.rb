@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmica_ui_extension do
   author 'Far End Technologies Corporation'
   description 'This plugin adds useful UI improvements.'
   requires_redmine version_or_higher: '6.0'
-  version '0.4.2'
+  version '0.5.0'
   url 'https://github.com/redmica/redmica_ui_extension'
   author_url 'https://github.com/redmica'
 
