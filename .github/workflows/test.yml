@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.2.5", "master"]
+        redmica_version: ["stable-4.0", "master"]
     runs-on: ubuntu-latest
     container:
       image: ruby:3.4
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.2.5", "master"]
+        redmica_version: ["stable-4.0", "master"]
     runs-on: ubuntu-latest
     container:
       image: ruby:3.4
@@ -82,7 +82,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.2.5", "master"]
+        redmica_version: ["stable-4.0", "master"]
     runs-on: ubuntu-latest
     container:
       image: ruby:3.4
