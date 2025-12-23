@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.2.5", "master"]
+        redmica_version: ["stable-4.0", "master"]
     runs-on: ubuntu-latest
     container:
       image: ruby:3.4
@@ -28,7 +28,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Setup
         run: |
           chmod +x /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh
@@ -36,7 +36,7 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: failure()
         with:
           name: test-postgres-${{ matrix.redmica_version }}-screenshots
@@ -50,7 +50,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.2.5", "master"]
+        redmica_version: ["stable-4.0", "master"]
     runs-on: ubuntu-latest
     container:
       image: ruby:3.4
@@ -60,7 +60,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Setup
         run: |
           chmod +x /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh
@@ -68,7 +68,7 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: failure()
         with:
           name: test-mysql-${{ matrix.redmica_version }}-screenshots
@@ -82,12 +82,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        redmica_version: ["v3.2.5", "master"]
+        redmica_version: ["stable-4.0", "master"]
     runs-on: ubuntu-latest
     container:
       image: ruby:3.4
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Setup
         run: |
           chmod +x /__w/redmica_ui_extension/redmica_ui_extension/.github/scripts/setup-redmica.sh
@@ -95,7 +95,7 @@ jobs:
       - name: Test RedMica UI Extension plugin
         run: cd /usr/src/redmine; RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
       - name: Store screenshots Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         if: failure()
         with:
           name: test-sqlite-${{ matrix.redmica_version }}-screenshots
