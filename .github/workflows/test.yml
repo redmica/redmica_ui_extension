@@ -24,7 +24,7 @@ jobs:
         include:
           - redmine-repository: 'redmine/redmine'
             redmine-version: 'master'
-            ruby-version: '3.4'
+            ruby-version: '4.0'
           - redmine-repository: 'redmica/redmica'
             redmine-version: 'stable-4.1'
             ruby-version: '3.4'
