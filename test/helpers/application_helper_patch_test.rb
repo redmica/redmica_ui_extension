@@ -56,4 +56,16 @@ class ApplicationHelperPatchTest < Redmine::HelperTest
       assert_match %r{data-url="http://test\.host/attachments/download/3/logo\.gif"}, result
     end
   end
+
+  def test_link_to_pdf_attachment_should_return_preview_link
+    with_settings :plugin_redmica_ui_extension => {'preview_attachment' => {'enabled' => 1}} do
+      pdf = Attachment.find(23)
+      result = link_to_attachment(pdf, {:download => true, :class => 'icon-download'})
+
+      assert_includes result, '<a class="icon-download" href="/attachments/download/23/ecookbook-gantt.pdf">ecookbook-gantt.pdf</a>'
+      assert_match %r{data-bp="ecookbook-gantt\.pdf"}, result
+      assert_match %r{data-bp-src="iframeSrc"}, result
+      assert_match %r{data-url="http://test\.host/attachments/download/23/ecookbook-gantt\.pdf\?disposition=inline"}, result
+    end
+  end
 end

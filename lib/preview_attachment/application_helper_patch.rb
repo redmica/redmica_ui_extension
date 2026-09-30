@@ -17,24 +17,29 @@ module PreviewAttachment
         video_extensions = Redmine::MimeType::MIME_TYPES.filter {|k,_| k=~/^video/ }.values.join(',').split(',')
         pdf_extensions = Redmine::MimeType::MIME_TYPES.filter {|k,_| k=~/^application\/pdf/ }.values.join(',').split(',')
 
-        bp_src = if attachment.is_image? && attachment.extension_in?(image_extensions)
-                   'imgSrc'
-                 elsif attachment.is_video? && attachment.extension_in?(video_extensions)
-                   'vidSrc'
-                 # MEMO: Audio is excluded from preview.
-                 #elsif attachment.is_audio?
-                 #  'audio'
-                 elsif attachment.is_pdf? && attachment.extension_in?(pdf_extensions)
-                   'iframeSrc'
-                 else
-                   nil
-                 end
-        return original_link unless bp_src
+        data = if attachment.is_image? && attachment.extension_in?(image_extensions)
+                 {
+                   :bp => attachment.filename,
+                   :bp_src => 'imgSrc',
+                   :url => download_named_attachment_url(attachment, filename: attachment.filename)
+                 }
+               elsif attachment.is_video? && attachment.extension_in?(video_extensions)
+                 {
+                   :bp => attachment.filename,
+                   :bp_src => 'vidSrc',
+                   :url => download_named_attachment_url(attachment, filename: attachment.filename)
+                 }
+               elsif attachment.is_pdf? && attachment.extension_in?(pdf_extensions)
+                 {
+                   :bp => attachment.filename,
+                   :bp_src => 'iframeSrc',
+                   :url => download_named_attachment_url(attachment, filename: attachment.filename, disposition: 'inline')
+                 }
+               end
+        return original_link unless data
 
-        filename = attachment.filename
-        url = download_named_attachment_url(attachment, { filename: filename })
         link_to(sprite_icon('zoom-in'), '#', :class => 'preview-attachment icon-only icon-zoom-in',
-                    :data => { :bp => filename, :bp_src => bp_src, :url => url },
+                    :data => data,
                     :onclick => 'previewAttachment(this);return false;') + original_link
       end
     end
