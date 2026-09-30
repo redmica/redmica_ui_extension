@@ -17,6 +17,8 @@ module PreviewAttachment
         video_extensions = Redmine::MimeType::MIME_TYPES.filter {|k,_| k=~/^video/ }.values.join(',').split(',')
         pdf_extensions = Redmine::MimeType::MIME_TYPES.filter {|k,_| k=~/^application\/pdf/ }.values.join(',').split(',')
 
+        preview_pdf = attachment.is_pdf? && attachment.extension_in?(pdf_extensions)
+
         bp_src = if attachment.is_image? && attachment.extension_in?(image_extensions)
                    'imgSrc'
                  elsif attachment.is_video? && attachment.extension_in?(video_extensions)
@@ -24,7 +26,7 @@ module PreviewAttachment
                  # MEMO: Audio is excluded from preview.
                  #elsif attachment.is_audio?
                  #  'audio'
-                 elsif attachment.is_pdf? && attachment.extension_in?(pdf_extensions)
+                 elsif preview_pdf
                    'iframeSrc'
                  else
                    nil
@@ -32,7 +34,11 @@ module PreviewAttachment
         return original_link unless bp_src
 
         filename = attachment.filename
-        url = download_named_attachment_url(attachment, { filename: filename })
+
+        url_options = { filename: filename }
+        url_options[:disposition] = 'inline' if preview_pdf
+        url = download_named_attachment_url(attachment, url_options)
+
         link_to(sprite_icon('zoom-in'), '#', :class => 'preview-attachment icon-only icon-zoom-in',
                     :data => { :bp => filename, :bp_src => bp_src, :url => url },
                     :onclick => 'previewAttachment(this);return false;') + original_link
