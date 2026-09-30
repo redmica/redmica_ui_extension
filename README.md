@@ -60,12 +60,12 @@ Image, Audio, Video, PDF
 > [!NOTE]
 > The `master` branch is a development branch and may include incompatible changes. Use a version tag for installation and updates.
 
-Download the latest release from [Releases](https://github.com/redmica/redmica_ui_extension/releases), extract it, and place it in `plugins/redmica_ui_extension` on your Redmine installation path.
+Download a release from [Releases](https://github.com/redmica/redmica_ui_extension/releases), extract it, and place it in `plugins/redmica_ui_extension` on your Redmine installation path.
 
-If you use Git, replace `<version-tag>` with the tag of the latest release and clone it:
+If you use Git, you can clone the repository directly by specifying the version tag.
 
 ```bash
-$ git clone -b <version-tag> https://github.com/redmica/redmica_ui_extension.git /path/to/redmine/plugins/redmica_ui_extension
+$ git clone -b <version-tag (e.g. v0.6.0)> https://github.com/redmica/redmica_ui_extension.git /path/to/redmine/plugins/redmica_ui_extension
 ```
 
 ## Test
