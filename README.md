@@ -57,13 +57,17 @@ Image, Audio, Video, PDF
 
 ## Installation
 
-Place the plugin source at Redmine plugins directory.
+> [!NOTE]
+> The `master` branch is a development branch and may include incompatible changes. Use a version tag for installation and updates.
 
-`git clone` or copy an unarchived plugin to plugins/redmica_ui_extension on your Redmine installation path.
+Download a release from [Releases](https://github.com/redmica/redmica_ui_extension/releases), extract it, and place it in `plugins/redmica_ui_extension` on your Redmine installation path.
 
+If you use Git, you can clone the repository directly by specifying the version tag.
+
+```bash
+$ git clone -b <version-tag (e.g. v0.6.0)> https://github.com/redmica/redmica_ui_extension.git /path/to/redmine/plugins/redmica_ui_extension
 ```
-$ git clone https://github.com/redmica/redmica_ui_extension.git /path/to/redmine/plugins/redmica_ui_extension
-```
+
 ## Test
 
 Run the following commands from your Redmine root:
