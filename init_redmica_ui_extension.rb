@@ -15,7 +15,6 @@ require_relative 'lib/burndown_chart/versions_helper_patch'
 VersionsHelper.include BurndownChart::VersionsHelperPatch
 
 # mermaid macro
-require_relative 'lib/mermaid_macro/hook_listener'
 Redmine::WikiFormatting::Macros.register do
   desc "Convert the text in the block to a diagram using mermaid.js. Mermaid's Syntax: https://mermaid-js.github.io/mermaid/#/n00b-syntaxReference\n" +
         "Example:\n\n" +
@@ -26,11 +25,11 @@ Redmine::WikiFormatting::Macros.register do
         "    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses\n" +
         "}}"
 
+  # Rendering is delegated to Redmine core, which renders ```mermaid code
+  # blocks as diagrams. This macro only emits the same markup as such a code
+  # block, so that core's mermaid Stimulus controller picks it up.
   macro :mermaid do |_obj, _args, text|
-    tmp_id = "mermaid-#{SecureRandom.hex(10)}"
-
-    content_tag(:div, text, class: 'mermaid', id: tmp_id) +
-      javascript_tag("await renderMermaidMacro('##{tmp_id}');", type: 'module')
+    content_tag(:pre, content_tag(:code, text, data: {language: 'mermaid', controller: 'mermaid'}))
   end
 end
 

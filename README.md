@@ -43,7 +43,15 @@ erDiagram
 }}
 ```
 
-**Warning: Mermaid macro does not support Internet Explorer.**
+> [!IMPORTANT]
+> Redmine core now supports rendering Mermaid code blocks as diagrams ([Feature #44425](https://www.redmine.org/issues/44425)).
+> As a result, this plugin keeps only the Mermaid macro, for backward compatibility.
+>
+> **To render Mermaid diagrams with this version of the plugin, use a version of Redmine/RedMica that includes the feature to render Mermaid code blocks as diagrams, and install Mermaid.js by following the instructions in `doc/INSTALL` of your Redmine/RedMica.**
+>
+> If Mermaid.js is not installed, or if your Redmine/RedMica version does not include the feature to render Mermaid code blocks as diagrams, the Mermaid macro is displayed as a plain code block.
+>
+> **To use Mermaid diagrams with a Redmine/RedMica version that does not include the feature to render Mermaid code blocks as diagrams, use the [v0.6.0](https://github.com/redmica/redmica_ui_extension/tree/v0.6.0) tag of this plugin.**
 
 <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_mermaid_macro.png" /></kbd>
 
@@ -85,9 +93,6 @@ $ RAILS_ENV=test bundle exec rake test TEST=plugins/redmica_ui_extension/test
 
 - Select2 4.0.13
   - LICENSE: https://github.com/select2/select2/blob/master/LICENSE.md
-- mermaid.js 11.12.1
-  - LICENSE: https://github.com/mermaid-js/mermaid/blob/master/LICENSE
-  - mermaid.js includes code from DOMPurify, which is licensed under the Mozilla Public License Version 2.0 (MPL 2.0). See `LICENSE.MPL-2.0` for details.
 - BigPicture.js 2.6.1
   - LICENSE: https://github.com/henrygd/bigpicture/blob/master/LICENSE
 
