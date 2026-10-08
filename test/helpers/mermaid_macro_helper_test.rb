@@ -9,8 +9,6 @@ class MermaidMacroHelperTest < Redmine::HelperTest
   include ERB::Util
   extend ActionView::Helpers::SanitizeHelper::ClassMethods
 
-  fixtures :projects, :users
-
   def test_macro_mermaid_renders_markup_for_core_mermaid_controller
     with_settings text_formatting: 'textile' do
       result = textilizable("{{mermaid\ngraph TD;\nA-->B;\n}}")
