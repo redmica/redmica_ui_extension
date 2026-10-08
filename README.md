@@ -47,11 +47,7 @@ erDiagram
 > Redmine core now supports rendering Mermaid code blocks as diagrams ([Feature #44425](https://www.redmine.org/issues/44425)).
 > As a result, this plugin keeps only the Mermaid macro, for backward compatibility.
 >
-> **To render Mermaid diagrams with this version of the plugin, use a version of Redmine/RedMica that includes [Feature #44425](https://www.redmine.org/issues/44425), and install Mermaid.js with the following command:**
->
-> ```
-> bin/rails redmine:mermaid:install RAILS_ENV=production
-> ```
+> **To render Mermaid diagrams with this version of the plugin, use a version of Redmine/RedMica that includes [Feature #44425](https://www.redmine.org/issues/44425), and install Mermaid.js by following the instructions in `doc/INSTALL` of your Redmine/RedMica.**
 >
 > If Mermaid.js is not installed, or if your Redmine/RedMica version does not include Feature #44425, the Mermaid macro is displayed as a plain code block.
 >
