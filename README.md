@@ -53,8 +53,6 @@ erDiagram
 >
 > **To use Mermaid diagrams with a Redmine/RedMica version that does not include the feature to render Mermaid code blocks as diagrams, use the [v0.6.0](https://github.com/redmica/redmica_ui_extension/tree/v0.6.0) tag of this plugin.**
 
-**Warning: Mermaid macro does not support Internet Explorer.**
-
 <kbd><img src="https://github.com/redmica/redmica_ui_extension/blob/images/demo_mermaid_macro.png" /></kbd>
 
 ### 5. Preview Attachment
