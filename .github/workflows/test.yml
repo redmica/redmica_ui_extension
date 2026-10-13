@@ -25,6 +25,7 @@ jobs:
           - redmine-repository: 'redmine/redmine'
             redmine-version: 'master'
             ruby-version: '4.0'
+            install-mermaid: true
           - redmine-repository: 'redmica/redmica'
             redmine-version: 'stable-4.1'
             ruby-version: '3.4'
@@ -45,6 +46,10 @@ jobs:
 
     - name: Set up plugin
       run: bundle install
+
+    - name: Install Mermaid.js
+      if: matrix.install-mermaid
+      run: bin/rails redmine:mermaid:install
 
     - name: Install Playwright dependencies
       run: |
