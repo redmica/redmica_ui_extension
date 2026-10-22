@@ -32,7 +32,7 @@ jobs:
 
     steps:
     - name: Set up Redmine
-      uses: hidakatsuya/action-setup-redmine@v4.0.0
+      uses: hidakatsuya/action-setup-redmine@v4.0.1
       with:
         repository: ${{ matrix.redmine-repository }}
         version: ${{ matrix.redmine-version }}
