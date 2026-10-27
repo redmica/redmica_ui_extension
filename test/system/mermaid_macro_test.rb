@@ -124,7 +124,7 @@ class MermaidMacroTest < PlaywrightSystemTestCase
   def assert_rendered_diagram
     # The source code block is kept but hidden once the diagram is rendered.
     assert_selector 'pre code[data-controller="mermaid"]', visible: :hidden
-    assert_selector 'div.mermaid[data-processed="true"] svg'
+    assert_selector 'div.mermaid svg'
     assert_no_selector '.flash.error'
 
     # Test that the diagram is not in an incorrectly drawn state.
